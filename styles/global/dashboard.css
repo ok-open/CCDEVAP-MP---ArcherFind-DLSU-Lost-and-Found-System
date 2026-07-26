@@ -1,0 +1,273 @@
+/* DASHBOARD LAYOUT */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100dvh;
+    background-color: color-mix(in srgb, var(--color-secondary) 60%, var(--color-complement));
+}
+
+.dashboard-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    padding: var(--space-medium);
+    gap: var(--space-small);
+    overflow-y: auto;
+}
+
+.greeting {
+    font-size: calc(var(--text-large) + 8px);
+    font-weight: 700;
+}
+
+.card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    background-color: var(--color-secondary);
+    transition: all 0.3s ease;
+    padding: var(--space-medium);
+    border-radius: var(--radius-medium);
+
+    & hr {
+        border: none;
+        height: 1px;
+        background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
+        margin-top: var(--space-tiny);
+        margin-bottom: 10px;
+    }
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-small);
+    width: 100%;
+    flex: 1;
+}
+
+.stat-block-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-small);
+}
+
+.time-frame {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-tiny);
+    max-width: 140px;
+
+    & label {
+        font-size: calc(var(--text-tiny) - 3px);
+    }
+
+    & input {
+        padding: none;
+        max-height: 30px;
+        font-size: calc(var(--text-tiny) - 3px);
+    }
+}
+
+.graph-card {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.graph-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & p {
+        font-size: var(--text-small);
+        font-weight: 600;
+    }
+
+    & span {
+        font-weight: 600;
+    }
+}
+
+.card-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-small);
+    width: 100%;
+}
+
+.stat-grid-wrapper {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: var(--space-small);
+}
+
+.green-border {
+    border-bottom: 5px solid var(--color-primary-deeper);
+}
+
+/* Two-column layout: main content (.cards-wrapper) + a sidebar of
+   action buttons. Used by staff/student dashboards that link out to
+   other list pages (claims, reports, surrenders). */
+.dashboard-columns {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-small);
+    width: 100%;
+    flex: 1;
+}
+
+.action-buttons {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-small);
+    justify-content: center;
+}
+
+.action-button {
+    padding: var(--space-medium);
+    border: none;
+    border-radius: var(--radius-medium);
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    font-size: var(--text-small);
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Generic table styling for cards that show tabular data
+   (e.g. "Recent Items Added"). Apply class="data-table" to the <table>. */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-small);
+}
+
+.data-table th,
+.data-table td {
+    text-align: left;
+    padding: var(--space-small) var(--space-tiny);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+.data-table th {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+canvas {
+    min-height: 250px;
+    max-height: 250px;
+    min-width: 250px;
+    margin-bottom: var(--space-small);
+}
+
+.info-card {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-medium);
+    margin-bottom: var(--space-small);
+    padding-bottom: var(--space-small);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 10%, transparent);
+
+    & span {
+        font-weight: 600;
+    }
+}
+
+.info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--space-medium);
+    padding: var(--space-small) 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 5%, transparent);
+}
+
+.info-row-margin {
+    margin-bottom: var(--space-medium);
+}
+
+.green-button {
+    padding: var(--space-tiny);
+}
+
+.info-number {
+    font-size: var(--text-small);
+    font-weight: 700;
+}
+
+.report-button {
+    background: transparent;
+    color: var(--color-primary);
+    outline: 6px solid var(--color-primary);
+}
+
+.report-button:hover {
+    background: var(--color-primary);
+    color: var(--color-complement);
+}
+
+@media (max-width: 1024px) {
+    .dashboard-columns {
+        flex-direction: column;
+    }
+
+    .action-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-row {
+        flex-direction: column;
+    }
+
+    .stat-block {
+        min-width: auto;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-button {
+        padding: var(--space-medium);
+    }
+
+    .greeting {
+        font-size: var(--text-large);
+    }
+}

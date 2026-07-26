@@ -1,0 +1,185 @@
+/**************** LOGIN ****************/
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-large);
+    height: 100dvh;
+    width: auto;
+    background: var(--BACKGROUND-login) var(--bg-cover);
+}
+
+@media (max-width: 600px) {
+    wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* ---------- LEFT: LOGIN INTRO ---------- */
+.logo-intro {
+    align-content: center;
+}
+/* title and description layout is located in global.css*/
+
+/* ---------- RIGHT: LOG IN PAGE ---------- */
+.login-register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-register-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-medium) var(--space-medium) var(--space-small) var(--space-medium);
+    background-color: var(--color-secondary-glass);
+    backdrop-filter: blur(5px);
+    border-radius: var(--radius-small);
+
+    & h2 {
+        padding-bottom: var(--space-small);
+    }
+}
+
+.login-register-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-small);
+    padding: var(--space-tiny) 0;
+    width: clamp(14rem, 30vw + 2rem, 22rem);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form input {
+    font-size: var(--text-tiny);
+}
+
+/* REGISTER */
+.name {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-tiny);
+    width: 100%;
+}
+
+.firstname, .lastname {
+    flex: 1;
+    min-width: 0;
+}
+
+/* PASSWORD */
+.password-input-wrapper {
+    position: relative;
+}
+
+.password-input-wrapper input {
+    width: 100%;
+}
+
+.see-pass {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.see-pass svg {
+    fill: color-mix(in srgb, var(--color-primary) 30%, transparent);
+    width: 22px;
+    height: 22px;
+}
+
+/* password hidden (default) - show open eye */
+.see-pass svg:first-child { display: block; }
+.see-pass svg:last-child { display: none; }
+
+/* password visible - show closed eye */
+.see-pass.active svg:last-child { display: block; }
+.see-pass.active svg:first-child { display: none; }
+
+
+/* LOGIN BUTTON */
+
+/* DARK MODE */
+.day-night {
+    margin-top: calc(var(--space-medium) + 3px);
+}
+
+.day-night button {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    gap: 2px;
+    & span {
+        font-size: calc(var(--text-tiny) - 4px);
+        color: color-mix(in srgb, var(--color-primary) 70%, transparent);
+    }
+}
+
+.day-night button:hover {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    gap: 2px;
+}
+
+.day-night svg {
+    width: 16px;
+    height: auto;
+    fill: color-mix(in srgb, var(--color-primary) 70%, transparent);
+    background: none;
+    border: none;
+    transition: 0.2s ease;
+}
+
+.day-night svg:hover {
+    height: auto;
+}
+
+
+/* FOOTER */
+footer {
+    position: absolute;
+    bottom: 0.2vw;
+    padding-left: 10px;
+    background-color: transparent;
+}
+
+
+/* mobile responsive view */
+@media (max-width: 768px) {
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-register-details {
+        width: clamp(14rem, 65vw + 2rem, 22rem);
+    }
+}

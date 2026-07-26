@@ -1,0 +1,3 @@
+
+Images here are submitted by A STUDENT in the Lost Item report in student_report-item.html
+In the DB, the images here are in the reports_images table

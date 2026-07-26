@@ -1,0 +1,5 @@
+
+The images here are submitted by A STUDENT answering the surrender form in student_surrender-form.html
+In the DB, the images here are in the reports_images table
+
+If the surrender form is approved, the image here will move to ITEMS folder

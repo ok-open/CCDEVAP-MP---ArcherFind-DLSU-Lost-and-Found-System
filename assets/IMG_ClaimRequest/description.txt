@@ -1,0 +1,4 @@
+assets/IMG_ClaimRequest
+
+This folder will contain all images for proof of ownership that A STUDENT UPLOADS in student_claim-request.html
+In the DB, the images here are in the reports_images table

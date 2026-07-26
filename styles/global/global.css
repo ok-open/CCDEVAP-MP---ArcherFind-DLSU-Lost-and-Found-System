@@ -1,0 +1,428 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+:root {
+    /**************** COLORS ****************/
+    --color-primary: #3d5741;
+    --color-primary-dark: #0c2100;
+    --color-primary-deeper: #2f6627;
+    --color-secondary: #fffeed;
+    --color-secondary-hover: #e6e3c1;
+    --color-secondary-glass: color-mix(in srgb, var(--color-secondary) 70%, transparent);
+    --color-complement: #ffffff;
+    --color-navbar: #f9f7d2;
+    --color-navbar-hover: #d4d2aa;
+    --color-required: #ffe08a;
+    --color-fadeBG: #000000cc;
+    --color-lightfadeBG: rgba(0, 0, 0, 0.1);
+    --color-successMsg: #4CAF50;
+    --color-successMsg-hover: #318a34;
+    --color-errorMsg: #F44336;
+    --color-errorMsg-hover: #c73126;
+    --color-neutralMsg: #1071e1;
+    --color-neutralMsg-hover: #055dc1;
+
+    /***** Typography *****/
+    --font-base: "DM Sans", sans-serif;
+
+    /***** Specific font sizes *****/
+    --text-desc: clamp(1rem, 2vw + 0.5rem, 1.75rem);            /* subtitle/desc paragraphs */
+    --text-body: 1.2em;                                         /* login box body */
+    --text-footer: clamp(0.55rem, 0.7vw, 0.80rem);              /* footer */
+    --text-login-btn: clamp(0.9rem, 1.2vw + 0.3rem, 1.1rem);    /* log-in button */
+    --text-btn: clamp(1.3rem, 1.5vw + 0.6rem, 1.7rem);          /* button */
+
+    /***** General font sizes *****/
+    --text-tiny: clamp(0.75rem, 1vw + 0.1rem, 1rem);            /* captions, footnotes  for h6 */
+    --text-small: clamp(0.875rem, 1.2vw + 0.1rem, 1.25rem);     /* labels, tags         for h5 */
+    --text-medium: clamp(1rem, 1.5vw + 0.2rem, 1.5rem);         /* body text            for h4 */
+    --text-large: clamp(1.25rem, 2.5vw + 0.3rem, 2rem);         /* subheadings          for h3 */
+    --text-xlarge: clamp(1.5rem, 4vw + 0.4rem, 2.75rem);        /* headings             for h2 */
+    --text-xxlarge: clamp(2rem, 6vw + 1rem, 4.5rem);            /* banners              for h1 */
+
+    /***** Fluid spacing *****/
+    --space-tiny: clamp(0.25rem, 0.5vw + 0.1rem, 0.5rem);
+    --space-small: clamp(0.5rem, 1vw + 0.1rem, 0.9rem);
+    --space-medium: clamp(1rem, 3vw + 0.25rem, 2.5rem);
+    --space-large: clamp(1.5rem, 6vw + 0.5rem, 6rem);
+    --space-xlarge: clamp(2rem, 10vw + 1rem, 9.5rem);
+    --space-xxlarge: clamp(3rem, 15vw + 1.5rem, 15rem);
+    --space-xxxlarge: clamp(6rem, 25vw + 2rem, 21rem);
+
+    /***** Border radius *****/
+    --radius-small: 14px;
+    --radius-medium: 21px;
+    --radius-large: 28px;
+
+    /***** Background shorthand *****/
+    --bg-cover: center / cover no-repeat;
+
+    /***** Logo image sizes *****/
+    --logo-img-tiny: clamp(1.5rem, 1.5vw + 0.75rem, 2rem);
+    --logo-img-small: clamp(2.5rem, 3vw + 1rem, 3.125rem);
+    --logo-img-medium: clamp(3.125rem, 4.5vw + 1rem, 4.5rem);
+    --logo-img-large: clamp(4.5rem, 7vw + 1rem, 7.5rem);
+    --logo-img-xlarge: clamp(7.5rem, 10vw + 1.5rem, 13rem);
+    --logo-img-xxlarge: clamp(12rem, 15vw + 2rem, 22rem);
+    /**************** LOGO IMAGES ****************/
+
+    /**************** BACKGROUND IMAGES ****************/
+    --BACKGROUND-login: url('../../assets/BACKGROUNDS/Login.png');
+    --BACKGROUND-home: url('../../assets/BACKGROUNDS/Home.png');
+    --BACKGROUND-itemview: url('../../assets/BACKGROUNDS/ItemView.png');
+
+    /**************** SIDE PANEL WIDTH ****************/
+    --width-inner: clamp(280px, 40vw, 420px);
+    --width-main: clamp(280px, 40vw, 450px);
+}
+
+.darkmode {
+    /**************** COLORS (DARK MODE) ****************/
+    --color-primary: #fffeed;
+    --color-primary-dark: #787878;
+    --color-primary-deeper: #cccccc;
+    --color-secondary: #0b131a;
+    --color-secondary-hover: #040709;
+    --color-secondary-glass: color-mix(in srgb, var(--color-secondary) 70%, transparent);
+    --color-navbar: #080e14;
+    --color-navbar-hover: #101b27;
+    --color-complement: #000000;
+    --color-required: #8d732c;
+    --color-fadeBG: #ffffffcc;
+    --color-lightfadeBG: rgba(255, 255, 255, 0.1);
+    --color-successMsg: #6dd270;
+    --color-successMsg-hover: #54f55a;
+    --color-errorMsg: #bb514a;
+    --color-errorMsg-hover: #e64237;
+    --color-neutralMsg: #3e98ff;
+    --color-neutralMsg-hover: #559ff4;
+
+    /**************** BACKGROUND IMAGES (DARK MODE) ****************/
+    --BACKGROUND-login: url('../../assets/BACKGROUNDS/LoginDark.png');
+    --BACKGROUND-home: url('../../assets/BACKGROUNDS/HomeDark.png');
+    --BACKGROUND-itemview: url('../../assets/BACKGROUNDS/ItemViewDark.png')
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-base);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    box-sizing: border-box;
+    color: var(--color-primary);
+    /* outline: 1.3px solid limegreen !important;  */
+}
+
+body {
+    background-color: var(--color-secondary);
+    max-width: 100%;
+    height: 100%;
+}
+
+.confirm-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.confirm-modal[hidden] {
+    display: none;
+}
+
+.confirm-modal-content {
+    background: var(--color-complement);
+    color: var(--color-primary);
+    border-radius: var(--radius-medium);
+    padding: 1.5rem;
+    width: min(90vw, 420px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.confirm-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.confirm-modal-actions button {
+    min-width: 90px;
+}
+
+/* remove margin for each header, add consistent font weight */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-weight: 950;
+}
+
+/* sizing per header */
+h1 {
+    font-size: var(--text-xxlarge);
+}
+
+h2 {
+    font-size: var(--text-xlarge);
+}
+
+h3 {
+    font-size: var(--text-large);
+}
+
+h4 {
+    font-size: var(--text-medium);
+}
+
+h5 {
+    font-size: var(--text-small);
+}
+
+h6 {
+    font-size: var(--text-tiny);
+}
+
+/**************** ArcherFind Logo ****************/
+.archerfind-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-small);
+
+    & h1 {
+        font-size: clamp(2rem, 6vw + 1rem, 8rem);
+    }
+
+    & img {
+        width: var(--logo-img-xlarge);
+        height: auto;
+    }
+}
+
+.title-desc {
+    text-align: center;
+
+    & p {
+        font-size: var(--text-medium);
+        letter-spacing: 0px;
+    }
+}
+
+/* CONNECTIONS */
+.connections {
+    padding: var(--space-medium) var(--space-large) 0 var(--space-large);
+    display: flex;
+    flex-direction: column;
+    background-color: color-mix(in srgb, var(--color-secondary) 95%, #808080);
+
+    & h3 {
+        margin-bottom: 1rem;
+    }
+}
+
+.connections-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+@media (max-width: 600px) {
+    .connections-container {
+        flex-direction: column;
+    }
+}
+
+.connections li {
+    list-style: none;
+    margin-bottom: 1rem;
+    font-size: var(--text-tiny);
+}
+
+.connections li a {
+    text-decoration: underline;
+}
+
+.connections svg {
+    fill: var(--color-primary);
+    height: 30px;
+}
+
+.connections-container>div {
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+}
+
+#write-us {
+    position: relative;
+    left: -8px;
+    display: flex;
+    align-items: center;
+    font-size: var(--text-small);
+}
+
+/* FOOTER */
+footer {
+    color: color-mix(in srgb, color-mix(in srgb, #808080, 50% var(--color-primary-dark)) 30%, transparent);
+    font-size: var(--text-footer);
+    text-align: left;
+    padding: 1vh var(--space-large) 1vh var(--space-large);
+    background-color: color-mix(in srgb, var(--color-secondary) 95%, #808080);
+
+    & hr {
+        border: 0;
+        height: 0.2px;
+        background-color: color-mix(in srgb, color-mix(in srgb, #808080, 50% var(--color-primary-dark)) 20%, transparent);
+        margin-bottom: var(--space-tiny);
+    }
+}
+
+/* ----------------- INPUT BOXES ----------------- */
+input,
+textarea,
+.input-box,
+select {
+    background-color: var(--color-complement);
+    color: var(--color-primary-dark);
+    border-radius: 3px;
+    border: 1px solid var(--color-primary-dark);
+    font-size: calc(var(--text-tiny) - 0px);
+    padding: clamp(0.3rem, 0.6vw + 0.1rem, 0.55rem) clamp(0.4rem, 1vw + 0.1rem, 0.8rem);
+    height: clamp(2.2rem, 5vw, 2.8rem);
+}
+
+textarea {
+    min-height: 80px;
+    max-height: 160px;
+    resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder,
+.input-box::placeholder {
+    color: color-mix(in srgb, var(--color-primary) 60%, transparent);
+}
+
+input:focus,
+textarea:focus,
+.input-box:focus,
+select:focus {
+    outline: none;
+}
+
+/* READ ONLY */
+input[readonly] {
+    background-color: var(--color-secondary-hover);
+    cursor: not-allowed;
+}
+
+/* ----------------- CHECKBOXES & RADIOS ----------------- */
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"] {
+    accent-color: var(--color-primary-dark);
+}
+
+/* ----------------- BUTTONS ----------------- */
+
+/* OUTLINE - GREEN BUTTON */
+.outline-green-button {
+    border: 3px solid var(--color-primary);
+    background-color: transparent;
+    color: var(--color-primary);
+    padding: 0.6em 1.2em;
+    font-size: var(--text-tiny);
+    font-family: inherit;
+    cursor: pointer;
+    transition: 0.1s ease-out;
+}
+
+.outline-green-button:hover {
+    background-color: var(--color-primary);
+    color: var(--color-complement);
+}
+
+/* OUTLINE - WHITE BUTTON */
+.outline-white-button {
+    position: absolute;
+    font-size: var(--text-small);
+    bottom: var(--space-medium);
+    border: 2px solid var(--color-complement);
+    background-color: transparent;
+    color: var(--color-complement);
+    padding: 0.6em 0.9em 0.6em 1.2em;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: 0.1s ease-out;
+
+    & svg {
+        fill: var(--color-complement);
+        width: 30px;
+        height: 30px;
+        transition: 0.1s ease-out;
+    }
+}
+
+.outline-white-button:hover {
+    background-color: var(--color-complement);
+    color: var(--color-primary);
+
+    & svg {
+        fill: var(--color-primary);
+    }
+}
+
+
+
+/* GREEN BUTTON VERSION 1 (WITH HOVER) */
+.green-button {
+    text-decoration: none;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    padding: 1rem 2rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    transition: .25s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+}
+
+.green-button:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-3px);
+}
+
+/* GREEN BUTTON VERSION 2 (USUALLY FOR FORMS) */
+.form-button {
+    background-color: var(--color-primary);
+    border-radius: var(--radius-small);
+    border: none;
+    cursor: pointer;
+    color: var(--color-secondary);
+    font-size: var(--text-medium);
+    padding: clamp(0.7rem, 1.5vw + 0.2rem, 1.1rem) clamp(1.2rem, 3vw + 0.5rem, 2rem);
+    text-shadow: 0px 1px 0px var(--color-primary-deeper);
+    transition: 0.1s ease-in;
+}
+
+.form-button:hover {
+    background-color: var(--color-primary-dark);
+}

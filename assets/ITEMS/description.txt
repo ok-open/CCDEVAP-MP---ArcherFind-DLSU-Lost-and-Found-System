@@ -1,0 +1,4 @@
+assets/ITEMS
+
+This folder will contain all images of ITEMS that are shown on student_item-view.html and student_claim-form.html
+In the DB, the images here are in the items_images table

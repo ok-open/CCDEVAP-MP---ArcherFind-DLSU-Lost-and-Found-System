@@ -1,0 +1,174 @@
+
+/**************** STUDENTS_ITEM VIEW ****************/
+/* REPORT AND CONTROLS */
+.report-and-controls {
+    position: sticky;
+    top: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    z-index: 1;
+    gap: var(--space-small);
+    padding: var(--space-small);
+    background-color: color-mix(in srgb, var(--color-secondary-hover) 80%, transparent);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    height: 135px;
+}
+
+/* CONTROLS */
+.form-button {
+    flex: 1;
+    font-size: var(--text-medium);
+    font-weight: 600;
+    min-height: 100%;
+}
+
+.controls-wrapper {
+    flex: 8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.controls {
+    overflow: hidden; 
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-tiny);
+    align-items: center;
+}
+
+select.control-box {
+    padding-left: 2px;
+    padding-right: 0px;
+}
+
+.search-bar { flex: 9; }
+.sort-dropdown { flex: 1; }
+.filter-dropdown { flex: 1; }
+
+
+/* 
+.sort-dropdown,
+.filter-dropdown {
+    flex: 1;
+    padding: var(--space-small);
+    border-radius: var(--radius-small);
+    border: 1px solid var(--color-primary-dark);
+    background-color: var(--color-complement);
+} */
+
+.itemview-main {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-small);
+}
+
+.item-list {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-small);
+    align-content: start;
+}
+
+.item-card {
+    height: 322px;
+    /* Modified to 322 so that canva square size will cover full square */
+    width: 100%;
+    border-radius: var(--radius-medium);
+    background-color: var(--color-secondary-hover);
+    transition: 0.2s ease-out;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    position: relative;
+}
+
+.item-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.item-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* changed to contain to avoid cropping */
+    /* can change to cover if preferred */
+    display: block;
+    border-radius: var(--radius-medium);
+}
+
+.item-name-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-secondary-glass);
+    padding: var(--space-small);
+    opacity: 1;
+    transition: opacity 0.2s ease-out;
+    border-radius: 0 0 var(--radius-medium) var(--radius-medium);
+}
+
+.item-name-overlay p {
+    margin: 0;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.item-card:hover {
+    transform: scale(1.03);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* .item-card:hover .item-name-overlay {
+    opacity: 1;
+} */
+
+.user-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    .report-and-controls {
+        height: 140px;
+    }
+
+    .controls {
+        display: grid;
+        grid-template-columns: 2fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+            'search-bar search-bar'
+            'sort-dropdown filter-dropdown';
+    }
+
+    .search-bar { grid-area: search-bar; }
+    .sort-dropdown { grid-area: sort-dropdown; }
+    .filter-dropdown { grid-area: filter-dropdown; }
+
+    .itemview-main {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+    }
+
+    .item-list {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+
+    .item-card {
+    height: 160px;
+    }
+}

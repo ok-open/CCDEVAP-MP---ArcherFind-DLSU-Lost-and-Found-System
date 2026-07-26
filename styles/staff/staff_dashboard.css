@@ -1,0 +1,145 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    background-color: color-mix(in srgb, var(--color-secondary) 60%, var(--color-complement));
+}
+
+.dashboard-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    min-height: 100vh;
+    padding: var(--space-medium);
+    gap: var(--space-medium);
+}
+
+.stats-buttons-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-medium);
+    width: 100%;
+}
+
+.content {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    background-color: var(--color-secondary);
+    transition: all 0.3s ease;
+    padding: var(--space-medium);
+    border-radius: var(--radius-medium);
+
+    & hr {
+        border: none;
+        height: 1px;
+        background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
+        margin-top: var(--space-tiny);
+        margin-bottom: 10px;
+    }
+}
+
+.content:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.stats-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-medium);
+    flex: 5;
+}
+
+.top-stat-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-medium);
+    width: 100%;
+}
+
+.stat-block {
+    flex: 1;
+    border-bottom: 5px solid var(--color-primary-deeper);
+}
+
+/* BOTTOM SECTION */
+.bottom-stat-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-medium);
+}
+
+@media (max-width: 1000px) {
+    .bottom-wrapper {
+        flex-direction: column;
+    }
+}
+
+.item-status-overview {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.recent-items-added {
+    flex: 2;
+    padding: var(--space-medium);
+    min-height: 250px;
+    overflow-y: auto;
+}
+
+#staff-report-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-small);
+}
+
+#staff-report-table thead {
+    background-color: color-mix(in srgb, var(--color-secondary-hover) 60%, var(--color-complement));
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+#staff-report-table th {
+    padding: var(--space-small);
+    text-align: left;
+    color: var(--color-primary-dark);
+    font-weight: 600;
+    border-bottom: 2px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+#staff-report-table td {
+    padding: var(--space-small);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+#staff-report-table tbody tr:hover {
+    background-color: color-mix(in srgb, var(--color-primary-deeper) 5%, transparent);
+}
+
+.notif p {
+    font-size: var(--text-small);
+}
+
+/* RIGHT BUTTONS */
+.buttons-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-small);
+    flex: 1;
+}
+
+.action-button {
+    font-size: var(--text-large);
+    font-weight: 700;
+    flex: 1;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    border: none;
+}

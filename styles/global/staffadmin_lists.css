@@ -1,0 +1,608 @@
+/* The Verify Claim List message and search bar */
+/* .MainHeader {
+    display: flex;
+    align-items: center;
+    flex-wrap:wrap;
+    padding: var(--space-small);
+    gap: var(--space-small);
+
+    & input {
+        min-width: 250px;
+        padding: var(--space-small) var(--space-small);
+        font-size: var(--text-small);
+    }
+}
+
+.SearchContainer{
+    margin-left:auto;
+} */
+
+/* CONTROLS */
+.controls-wrapper {
+    position: sticky;
+    top: 60px;
+    flex: 8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: color-mix(in srgb, var(--color-secondary-hover) 80%, transparent);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    padding: var(--space-small);
+    z-index: 8;
+}
+
+.title {
+    padding: var(--space-tiny);
+        & p {
+        font-size: var(--text-small);
+        font-style: italic;
+    }
+}
+
+.controls {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-tiny);
+    align-items: center;
+}
+
+select.control-box {
+    padding-left: 2px;
+    padding-right: 0px;
+}
+
+.search-bar {
+    flex: 9;
+}
+
+.sort-dropdown {
+    flex: 1;
+}
+
+.filter-dropdown {
+    flex: 1;
+}
+
+/* ------------------------------------------------------------------------------------  */
+/* This contains everything below the header
+#MainContainer {
+    display: flex;
+    align-items: flex-start;
+    padding: var(--space-small);
+    gap: var(--space-small);
+}
+
+/* The small Sort by Panel on the left of the "boxes" of records */
+#SortBy {
+    padding: var(--space-medium);
+}
+
+/* design the buttons */
+.SortBtn,
+#closePanelBtn,
+.close {
+    color: var(--color-complement);
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: var(--radius-small);
+
+    padding: var(--space-small);
+    font-size: var(--text-small);
+    cursor: pointer;
+}
+
+/* Contains all of the "boxes" of records of claim request, lost reports, surrender forms */
+.requests-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-medium);
+    gap: var(--space-medium);
+    background-color: color-mix(in srgb, var(--color-secondary) 60%, var(--color-complement));
+}
+
+/* REQUEST RECORD */
+.request-record {
+    display: flex;
+    flex-direction: row;
+    border: none;
+    border-radius: var(--radius-small);
+    padding: var(--space-small);
+    gap: var(--space-small);
+    
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    background-color: var(--color-secondary);
+    transition: all 0.3s ease;
+    border-radius: var(--radius-medium);
+    transform: 0.3s ease;
+}
+
+.request-record:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    transform: translateY(-2px);
+}
+
+/* REQUEST IMAGE DIV (CAROUSEL) */
+.request-image {
+    flex: 1;
+    max-height: 400px;
+    max-width: 320px;
+    min-width: 320px;
+    
+    border-radius: var(--radius-small);
+    border: 7px solid var(--color-secondary-hover);
+    position: relative;
+
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: var(--radius-small);
+
+        max-height: 370px;
+        max-width: 300px;
+        min-width: 300px;
+    }
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: var(--color-primary);
+    background-color: var(--color-secondary-glass);
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    transform: translateY(-50%); /* Clean vertical centering */
+}
+
+.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: var(--color-secondary-hover);
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active-img, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/* REQUEST ITEM DETAILS */
+.request-item-details {
+    flex: 1;
+}
+
+.item-column-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-small);
+}
+
+.item-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* BUTTONS */
+.request-buttons-panel {
+    display: flex;
+    flex-direction: row;
+    grid-template-areas:
+        'open open'
+        'accept reject';
+    flex-direction: row;
+    gap: calc(var(--space-tiny) - 6px);
+
+    & img {
+        width: 20px;
+    }
+}
+
+.request-button {
+    border: none;
+    color: var(--color-secondary);
+    display: flex;
+    flex-direction: row;
+    gap: calc(var(--space-tiny) - 3px);
+    align-items: center;
+    font-size: calc(var(--text-tiny) - 4px);
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0 var(--space-tiny);
+    border-radius: 3px;
+    height: 30px;
+
+    & svg { width: 17px; fill: var(--color-complement) }
+    transition: 0.2s ease;
+}
+
+.openPanelBtn { background-color: var(--color-neutralMsg); grid-area: open; }
+.openPanelBtn:hover { background-color: var(--color-neutralMsg-hover) }
+
+.accept-btn { background-color: var(--color-successMsg); grid-area: accept; }
+.accept-btn:hover { background-color: var(--color-successMsg-hover); }
+
+.reject-btn { background-color: var(--color-errorMsg); grid-area: reject; }
+.reject-btn:hover { background-color: var(--color-errorMsg-hover); }
+
+
+hr {
+        border: none;
+        height: 1px;
+        background-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+        margin-bottom: 10px;
+}
+
+.item-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-small);
+}
+
+.detail-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    & label {
+        font-weight: 450;
+        font-size: var(--text-small);
+    }
+
+    & input {
+        font-size: var(--text-small);
+    }
+}
+
+.RequestsRecord h2 { font-size: var(--text-xlarge); }
+
+
+
+
+.RequestsContainer h3,
+p {
+    font-size: var(--text-large);
+}
+
+.RequestRecord {
+    border: 2px solid #ccc;
+    border-radius: var(--radius-medium);
+    padding: var(--space-small);
+    background-color: var(--color-secondary-hover);
+
+    display: flex;
+    align-items: center;
+    gap: var(--space-small);
+
+    & img {
+        width: clamp(80px, 15vw, 120px);
+        height: auto;
+        cursor: pointer;
+    }
+}
+
+.LostDetails {
+    width: 35%;
+}
+
+.UserDetails {
+    width: 40%;
+}
+
+.RequestButtons {
+    margin-left: auto;
+}
+
+.RequestButtons button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+
+    & img {
+        width: var(--logo-img-small);
+    }
+}
+
+.RequestButtons button:active {
+    transform: scale(0.95);
+}
+
+.RequestButtons button:hover {
+    filter: brightness(0.85);
+    transition: all 0.2s ease;
+}
+
+/* Hidden at first. Only shows when the Icon_see button is clicked */
+#SidePanel_Iconsee {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    width: var(--width-main);
+    height: 100vh;
+    background-color: var(--color-secondary-glass);
+    box-shadow: -5px 0 15px var(--color-lightfadeBG);
+    padding: var(--space-small);
+    box-sizing: border-box;
+
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    & .LostDetails {
+        width: var(--width-inner);
+    }
+
+}
+
+#SidePanel_Iconsee h5 {
+    display: inline-block;
+}
+
+#SidePanel_Iconsee p {
+    font-size: var(--text-small);
+    display: inline-block;
+}
+
+#SidePanel_Iconsee.open {
+    right: 0;
+    /* it opens the side panel */
+}
+
+/* Refers to the images in Claim Request Side Panel */
+#SidePanel_ImgContainer .ImgFromDB {
+    width: var(--logo-img-xxlarge);
+}
+
+#SidePanel_ImgContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-small);
+    justify-content: center;
+}
+
+/* Refers to the images in Verify Lost Item Report Side Panel */
+#SidePanel_ImgContainer .ImgMatches {
+    box-shadow: -5px 0 15px var(--color-lightfadeBG);
+}
+
+.ImgCard {
+    position: relative;
+    width: calc(45% - 5px);
+}
+
+.ImgCard h2 {
+    font-size: var(--text-small);
+}
+
+.ImgCard h3 {
+    font-size: var(--text-xsmall);
+}
+
+.ImgCard p {
+    font-size: var(--text-small);
+}
+
+
+.ImgCard .ImgMatches {
+    width: 100%;
+    cursor: pointer;
+    display: block;
+}
+
+.LostDetailsImgMatch {
+    position: absolute;
+    top: 100%;
+    margin-bottom: var(--space-medium);
+    width: 100%;
+    z-index: 10;
+
+    background-color: var(--color-secondary-hover);
+    border: 1px solid #ccc;
+    border-radius: var(--radius-medium);
+    padding: var(--space-small);
+    box-shadow: 0 4px 8px var(--color-fadeBG);
+}
+
+.hidden {
+    display: none;
+}
+
+/* modal background for expanded image */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-fadeBG);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 8px;
+}
+
+#toastBox {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-small);
+    z-index: 3000;
+}
+
+.toast {
+    width: 300px;
+    background-color: var(--color-secondary-hover);
+    color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 0 4px 12px var(--color-fadeBG);
+
+    transform: transalateX(100%);
+    animation: slideIn 0.4secs ease forwards;
+}
+
+.toast.success {
+    border-left-color: var(--color-successMsg);
+}
+
+.toast.error {
+    border-left-color: var(--color-errorMsg);
+}
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+    }
+}
+
+
+/* ==========================
+   MOBILE
+========================== */
+@media (max-width: 768px) {
+
+    #MainHeader {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #MainHeader {
+        text-align: center;
+    }
+
+    #MainHeader input {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    #MainContainer {
+        flex-direction: column;
+    }
+
+    #SortBy {
+        width: 100%;
+    }
+
+    #MainContainer {
+        display: grid;
+        place-items: center;
+        height: 100vh;
+    }
+
+    .RequestRecord {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .RequestRecord img {
+        align-self: center;
+        width: 120px;
+    }
+
+    .LostDetails,
+    .UserDetails {
+        width: 100%;
+    }
+
+    .RequestButtons {
+        margin-left: 0;
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .RequestButtons br {
+        display: none;
+    }
+
+    .RequestButtons button img {
+        width: 40px;
+    }
+
+    #SidePanel_Iconsee {
+        width: 100%;
+        right: -100%;
+    }
+
+    .ImgCard {
+        width: 100%;
+    }
+
+    .LostDetailsImgMatch {
+        position: static;
+        margin-top: 10px;
+    }
+
+    .SearchContainer {
+        width: 100%;
+    }
+
+    .SearchContainer input {
+        width: 100%;
+    }
+
+}

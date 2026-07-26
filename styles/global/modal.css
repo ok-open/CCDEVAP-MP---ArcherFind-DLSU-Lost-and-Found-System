@@ -1,0 +1,38 @@
+.confirm-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.confirm-modal[hidden] {
+    display: none;
+}
+
+.confirm-modal-content {
+    background: var(--color-complement);
+    color: var(--color-primary);
+    border-radius: var(--radius-medium);
+    padding: 1.5rem;
+    width: min(90vw, 420px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.confirm-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.confirm-modal-actions button {
+    min-width: 90px;
+}
+
+.no-button { background-color: var(--color-errorMsg); }
+.yes-button { background-color: var(--color-successMsg);}
