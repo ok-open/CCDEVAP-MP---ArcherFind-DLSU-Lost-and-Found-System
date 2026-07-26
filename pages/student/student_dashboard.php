@@ -14,12 +14,14 @@
     <link rel="stylesheet" href="../../styles/global/global.css">
     <link rel="stylesheet" href="../../styles/global/navbar.css">
     <link rel="stylesheet" href="../../styles/global/dashboard.css">
+    <link rel="stylesheet" href="../../styles/global/toast.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- JavaScript -->
     <script src="../../javascript/global/navbar.js" defer></script>
     <script src="../../javascript/global/lost-item-chart.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../javascript/global/toast.js" defer></script>
     <script src="../../javascript/student/student_dashboard.js" defer></script>
 </head>
 
@@ -253,6 +255,7 @@
             2026 © AY2526T3. CCDEVAP - Web Application and Development. All Rights Reserved.
         </footer>
     </div>
+    <div id="toast"></div>
 </body>
 
 </html>

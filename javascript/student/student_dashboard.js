@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("success") === "report_updated") {
+        showToast("✓ Report updated successfully.", "var(--color-successMsg)", 6000);
+    }
+
     fetch("../../controllers/ReportsController.php?action=dashboard")
 
         .then(response => response.json())
@@ -30,9 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-
-
-
 // ==========================================
 // RENDER STATISTICS CARDS
 // ==========================================
@@ -59,9 +62,6 @@ function renderStats(stats) {
 
 }
 
-
-
-
 // ==========================================
 // RENDER REPORT HISTORY TABLE
 // ==========================================
@@ -87,8 +87,6 @@ function renderReports(reports) {
         return;
 
     }
-
-
 
     tbody.innerHTML =
 

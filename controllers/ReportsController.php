@@ -106,7 +106,6 @@ function handleEditReport($reportsModel)
 
     $roomId = !empty($_POST["room_id"]) ? $_POST["room_id"] : null;
     $areaId = !empty($_POST["area_id"]) ? $_POST["area_id"] : null;
-    $extraDetails = trim($_POST["description"] ?? "");
 
     if ($report["type"] === "Claim request") {
         // Item identity fields stay as they were — only location/details/date editable
@@ -114,6 +113,10 @@ function handleEditReport($reportsModel)
         $itemDescription = $report["item_description"];
         $categoryId = $report["category_id"];
         $brandId = $report["brand_id"];
+
+        // "description" textarea on this form maps to extra_details
+        // (the "Describe Features" field), not item_description
+        $extraDetails = trim($_POST["description"] ?? $report["extra_details"]);
 
         $whenLost = null;
         if (!empty($_POST["date_lost"]) && !empty($_POST["time_lost"])) {
@@ -126,6 +129,9 @@ function handleEditReport($reportsModel)
         $itemDescription = trim($_POST["description"] ?? $report["item_description"]);
         $categoryId = !empty($_POST["category_id"]) ? $_POST["category_id"] : null;
         $brandId = !empty($_POST["brand_id"]) ? $_POST["brand_id"] : null;
+
+        // extra_details isn't used by these two types — leave untouched
+        $extraDetails = $report["extra_details"];
 
         $whenLost = null;
         $whenFound = null;
@@ -150,7 +156,8 @@ function handleEditReport($reportsModel)
         $roomId,
         $areaId,
         $whenLost,
-        $whenFound
+        $whenFound,
+        $extraDetails
     );
 
     header("Location: ../pages/student/student_dashboard.php?success=report_updated");
