@@ -5,6 +5,17 @@ INSERT INTO users (first_name, last_name, email, password_hash, role) VALUES
 ('Nathan', 'Saclolo', 'nathan_saclolo@dlsu.edu.ph', '$2y$10$ww9SiZnuQrmlSY.a8Zb8w.wrLIF1PjARGSD1oh1YY.Ibop1UobG.S', 'Staff'),
 ('Daniel', 'Pamintuan', 'daniel_pamintuan@dlsu.edu.ph', '$2y$10$eFHiSLsoGVnD9CpYWHDrGuOWe1WmPTIKhvOFNbf.oNzGJUq73n1.6', 'Admin');
 
+-- NEW DATA (3 Students, 3 Staff, 2 Admins)
+INSERT INTO users (first_name, last_name, email, password_hash, role) VALUES
+('Bruce', 'Wayne', 'bruce_wayne@dlsu.edu.ph', '$2y$10$N82mAbsTCOyklxj5ztDJROPA7YBhwypcDamh7f7JGmweY5jpUReUG', 'Student'),
+('Sarah', 'Geronimo', 'sarah_geronimo@dlsu.edu.ph', '$2y$10$EPohVP1X57uJ.lxGsvLjOOmUT.ZjX.9K/sMEkMIA0kfTyOEXVZFBS', 'Student'),
+('Jose', 'Rizal', 'jose_rizal@dlsu.edu.ph', '$2y$10$Q2iluep/UaGFUDMLIwIYJ.bDFMadA/cDxp3w61EVYpiTHGbgS4uj.', 'Student'),
+('Lebron', 'James', 'lebron_james@dlsu.edu.ph', '$2y$10$ww9SiZnuQrmlSY.a8Zb8w.wrLIF1PjARGSD1oh1YY.Ibop1UobG.S', 'Staff'),
+('Alex', 'Eala', 'alex_eala@dlsu.edu.ph', '$2y$10$ww9SiZnuQrmlSY.a8Zb8w.wrLIF1PjARGSD1oh1YY.Ibop1UobG.S', 'Staff'),
+('Vice', 'Ganda', 'vice_ganda@dlsu.edu.ph', '$2y$10$ww9SiZnuQrmlSY.a8Zb8w.wrLIF1PjARGSD1oh1YY.Ibop1UobG.S', 'Staff'),
+('Manny', 'Pacquiao', 'manny_pacquiao@dlsu.edu.ph', '$2y$10$eFHiSLsoGVnD9CpYWHDrGuOWe1WmPTIKhvOFNbf.oNzGJUq73n1.6', 'Admin'),
+('Clark', 'Kent', 'clark_kent@dlsu.edu.ph', '$2y$10$eFHiSLsoGVnD9CpYWHDrGuOWe1WmPTIKhvOFNbf.oNzGJUq73n1.6', 'Admin');
+
 INSERT INTO categories (name) VALUES
 ('Electronics'),
 ('Tumblers & Bottles'),
@@ -625,10 +636,23 @@ SELECT 1, name, description, category_id, brand_id, item_id, room_id, area_id, '
 SELECT 2, name, description, category_id, brand_id, item_id, room_id, area_id, 'The umbrella is mine, here is apic of it with my bag. Check my personal keychains', NULL, when_found, NULL, 'Active', 'Claim request' FROM items WHERE item_id = 60 UNION ALL
 SELECT 1, name, description, category_id, brand_id, item_id, room_id, area_id, 'The bag is mine, I wore it on Animo Christmas day and left it in school', NULL, when_found, NULL, 'Active', 'Claim request' FROM items WHERE item_id = 56;
 
+-- NEW DATA for Claim Requests 
+INSERT INTO reports (
+    student_id, item_name, item_description, category_id, 
+    brand_id, item_id, room_id, area_id, extra_details, when_found, 
+    when_lost, reviewed_by, status, type
+)
+SELECT 6, name, description, category_id, brand_id, item_id, room_id, area_id, 'This LV Pocket Organizer is mine. It has my initial card in one of the inner slots.', NULL, when_found, NULL, 'Active', 'Claim request' FROM items WHERE item_id = 46 UNION ALL
+SELECT 7, name, description, category_id, brand_id, item_id, room_id, area_id, 'My 18oz Sorbet Pink AquaFlask! It has a distinct scratch on the silicone boot and my name on the bottom.', NULL, when_found, NULL, 'Active', 'Claim request' FROM items WHERE item_id = 34 UNION ALL
+SELECT 6, name, description, category_id, brand_id, item_id, room_id, area_id, 'The Space Grey hub is mine. It has a tiny dent on the HDMI port side and I can name the attached cables.', NULL, when_found, NULL, 'Active', 'Claim request' FROM items WHERE item_id = 23 UNION ALL
+SELECT 7, name, description, category_id, brand_id, item_id, room_id, area_id, 'I lost my AirPods Pro in a knitted sleeve. I can connect to them via Find My or display the serial number on my phone.', NULL, when_found, NULL, 'Active', 'Claim request' FROM items WHERE item_id = 3 UNION ALL
+SELECT 8, name, description, category_id, brand_id, item_id, room_id, area_id, 'The Grape Purple bottle belongs to me. It has a white replacement straw lid that I bought separately.', NULL, when_found, NULL, 'Active', 'Claim request' FROM items WHERE item_id = 35 UNION ALL
+SELECT 7, name, description, category_id, brand_id, item_id, room_id, area_id, 'This matte black GD12 stylus is mine. The replacement tip inside the box cap has a slight blue mark.', NULL, when_found, NULL, 'Active', 'Claim request' FROM items WHERE item_id = 24 UNION ALL
+SELECT 8, name, description, category_id, brand_id, item_id, room_id, area_id, 'Claiming the LV Monogram Pocket Organizer. I dropped it while studying in the room.', NULL, when_found, NULL, 'Active', 'Claim request' FROM items WHERE item_id = 46 UNION ALL
+SELECT 6, name, description, category_id, brand_id, item_id, room_id, area_id, 'Claiming the Grape Purple AquaFlask on behalf of my classmate. I have a photo of them using it in class.', NULL, when_found, NULL, 'Active', 'Claim request' FROM items WHERE item_id = 35;
 
 -- =========================================================================
 -- 2. LOSS REPORTS (4 Records) & SURRENDER FORMS (5 Records)
--- Text fields use '*'. ID fields use 0 to avoid numeric conflicts.
 -- =========================================================================
 INSERT INTO reports (
     student_id, item_name, item_description, category_id, brand_id, 
@@ -648,6 +672,44 @@ INSERT INTO reports (
 (2, 'Sunnies Eyeglasses', 'Black Square shaped glasses', 5, 15, NULL, NULL, 4, NULL, '2026-07-08 10:05:00', NULL, NULL, 'Active', 'Surrender Form'),
 (1, 'Student Beep Card', 'Beep Card for Juan De La Cruz', 4, 15, NULL, NULL, 9, NULL, '2026-07-08 15:50:00', NULL, NULL, 'Active', 'Surrender Form');
 
+-- NEW DATA for Loss Reports
+INSERT INTO reports (
+    student_id, item_name, item_description, category_id, brand_id, 
+    item_id, room_id, area_id, extra_details, when_found, 
+    when_lost, reviewed_by, status, type
+) VALUES
+(6, 'AirPods Pro 2nd Gen', 'White wireless earbuds in a clear silicone case with a carabiner', 1, 1, NULL, 5, NULL, NULL, NULL, '2026-02-14 11:30:00', NULL, 'Active', 'Loss Report'),
+(7, 'Pink AquaFlask 32oz', 'Light pink insulated bottle with DLSU stickers on the side', 2, 7, NULL, NULL, 4, NULL, NULL, '2026-03-03 15:10:00', NULL, 'Active', 'Loss Report'),
+(8, 'Black Leather Bi-Fold Wallet', 'Black leather wallet containing student ID and some cash', 3, 11, NULL, 2, NULL, NULL, NULL, '2026-03-21 08:45:00', NULL, 'Active', 'Loss Report'),
+(6, 'Galaxy Tab S9 Ultra', 'Graphite tablet with an S-Pen attached to the back', 1, 2, NULL, 12, NULL, NULL, NULL, '2026-04-09 13:20:00', NULL, 'Active', 'Loss Report'),
+(7, 'Uniqlo Oversized Airism Tee', 'Dark grey oversized t-shirt, size Medium', 5, 12, NULL, NULL, 3, NULL, NULL, '2026-04-28 17:00:00', NULL, 'Active', 'Loss Report'),
+(8, 'JisuLife Handheld Mini Fan', 'White portable USB fan with pink blades', 1, 4, NULL, 7, NULL, NULL, NULL, '2026-05-15 10:15:00', NULL, 'Active', 'Loss Report'),
+(6, 'Clear DLSU Student ID Holder', 'Lanyard with green DLSU ribbon and blue bus pass card', 4, 15, NULL, NULL, 8, NULL, NULL, '2026-06-02 12:00:00', NULL, 'Active', 'Loss Report'),
+(7, 'Anker 20000mAh Power Bank', 'Black heavy portable charger with two USB-C ports', 1, 6, NULL, 10, NULL, NULL, NULL, '2026-06-19 16:30:00', NULL, 'Active', 'Loss Report'),
+(8, 'Black Hydro Flask Standard Mouth', 'Matte black 21oz bottle with a flex cap', 2, 8, NULL, NULL, 6, NULL, NULL, '2026-07-04 09:00:00', NULL, 'Active', 'Loss Report'),
+(6, 'Zara Beige Knit Cardigan', 'Beige button-up sweater, women size Small', 5, 13, NULL, 3, NULL, NULL, NULL, '2026-07-22 14:45:00', NULL, 'Active', 'Loss Report');
+
+-- NEW DATA for Surrender Forms
+INSERT INTO reports (
+    student_id, item_name, item_description, category_id, brand_id, 
+    item_id, room_id, area_id, extra_details, when_found, 
+    when_lost, reviewed_by, status, type
+) VALUES
+-- Electronics (Cat 1): Kindle, Mechanical Keyboard, Calculator
+(6, 'Kindle Paperwhite 11th Gen', 'Black e-reader inside a green fabric flip case with a magnetic latch', 1, 15, NULL, 5, NULL, NULL, '2026-07-09 09:15:00', NULL, NULL, 'Active', 'Surrender Form'),
+(7, 'Keychron K2 Mechanical Keyboard', '75% layout wireless keyboard with RGB backlight and grey keycaps', 1, 15, NULL, 12, NULL, NULL, '2026-07-09 14:30:00', NULL, NULL, 'Active', 'Surrender Form'),
+(8, 'Casio FX-991EX ClassWiz', 'Scientific calculator with black body and white sliding protective cover', 1, 14, NULL, NULL, 2, NULL, '2026-07-10 11:00:00', NULL, NULL, 'Active', 'Surrender Form'),
+
+-- Bags & Pouches (Cat 4): Backpack, Pouch, Tote
+(6, 'Jansport SuperBreak Backpack', 'Maroon canvas daypack with a single front zipper pocket', 4, 15, NULL, 8, NULL, NULL, '2026-07-10 16:45:00', NULL, NULL, 'Active', 'Surrender Form'),
+(7, 'Bottega Veneta Intrecciato Pouch', 'Black woven leather small zip pouch found near the bench area', 4, 15, NULL, 15, NULL, NULL, '2026-07-11 10:20:00', NULL, NULL, 'Active', 'Surrender Form'),
+(8, 'Longchamp Le Pliage Tote', 'Navy blue nylon folding tote bag with tan leather shoulder handles', 4, 15, NULL, NULL, 6, NULL, '2026-07-12 12:10:00', NULL, NULL, 'Active', 'Surrender Form'),
+
+-- Personal Accessories (Cat 3 & Cat 5): Sunglasses, Scarf, Jacket, Earphones Case
+(6, 'Ray-Ban Wayfarer Sunglasses', 'Classic matte black frame with dark green G-15 polarized lenses', 3, 15, NULL, 3, NULL, NULL, '2026-07-13 08:50:00', NULL, NULL, 'Active', 'Surrender Form'),
+(7, 'Acne Studios Wool Scarf', 'Grey oversized fringed virgin wool scarf left on a lecture room chair', 5, 15, NULL, 22, NULL, NULL, '2026-07-13 15:30:00', NULL, NULL, 'Active', 'Surrender Form'),
+(8, 'Nike Windrunner Jacket', 'Black and white zip-up lightweight windbreaker, size Medium', 5, 15, NULL, NULL, 10, NULL, '2026-07-14 09:40:00', NULL, NULL, 'Active', 'Surrender Form'),
+(6, 'Sony WH-1000XM5 Hard Case', 'Empty dark grey zippered protective carrying case for over-ear headphones', 1, 2, NULL, 4, NULL, NULL, '2026-07-14 13:15:00', NULL, NULL, 'Active', 'Surrender Form');
 -- Clear old image mapping data to prevent duplicates
 TRUNCATE TABLE reports_images;
 
@@ -679,6 +741,49 @@ SELECT report_id, '../../assets/IMG_LostReport/6.png' FROM reports WHERE item_na
 SELECT report_id, '../../assets/IMG_LostReport/7.png' FROM reports WHERE item_name = 'Sunnies Glasses Pouch' UNION ALL
 SELECT report_id, '../../assets/IMG_LostReport/8.png' FROM reports WHERE item_name = 'Sunnies Glasses Pouch';
 
+-- NEW DATA for images of Loss Reports
+INSERT INTO reports_images (report_id, img_filepath)
+SELECT report_id, '../../assets/IMG_LostReport/9.png' FROM reports WHERE item_name = 'AirPods Pro 2nd Gen' UNION ALL
+SELECT report_id, '../../assets/IMG_LostReport/10.png' FROM reports WHERE item_name = 'AirPods Pro 2nd Gen' UNION ALL
+
+SELECT report_id, '../../assets/IMG_LostReport/11.png' FROM reports WHERE item_name = 'Pink AquaFlask 32oz' UNION ALL
+SELECT report_id, '../../assets/IMG_LostReport/12.png' FROM reports WHERE item_name = 'Pink AquaFlask 32oz' UNION ALL
+
+SELECT report_id, '../../assets/IMG_LostReport/13.png' FROM reports WHERE item_name = 'Black Leather Bi-Fold Wallet' UNION ALL
+SELECT report_id, '../../assets/IMG_LostReport/14.png' FROM reports WHERE item_name = 'Black Leather Bi-Fold Wallet' UNION ALL
+
+SELECT report_id, '../../assets/IMG_LostReport/15.png' FROM reports WHERE item_name = 'Galaxy Tab S9 Ultra' UNION ALL
+SELECT report_id, '../../assets/IMG_LostReport/16.png' FROM reports WHERE item_name = 'Galaxy Tab S9 Ultra' UNION ALL
+
+SELECT report_id, '../../assets/IMG_LostReport/17.png' FROM reports WHERE item_name = 'Uniqlo Oversized Airism Tee' UNION ALL
+SELECT report_id, '../../assets/IMG_LostReport/18.png' FROM reports WHERE item_name = 'Uniqlo Oversized Airism Tee' UNION ALL
+
+SELECT report_id, '../../assets/IMG_LostReport/19.png' FROM reports WHERE item_name = 'JisuLife Handheld Mini Fan' UNION ALL
+SELECT report_id, '../../assets/IMG_LostReport/20.png' FROM reports WHERE item_name = 'JisuLife Handheld Mini Fan' UNION ALL
+
+SELECT report_id, '../../assets/IMG_LostReport/21.png' FROM reports WHERE item_name = 'Clear DLSU Student ID Holder' UNION ALL
+SELECT report_id, '../../assets/IMG_LostReport/22.png' FROM reports WHERE item_name = 'Clear DLSU Student ID Holder' UNION ALL
+
+SELECT report_id, '../../assets/IMG_LostReport/23.png' FROM reports WHERE item_name = 'Anker 20000mAh Power Bank' UNION ALL
+SELECT report_id, '../../assets/IMG_LostReport/24.png' FROM reports WHERE item_name = 'Anker 20000mAh Power Bank' UNION ALL
+
+SELECT report_id, '../../assets/IMG_LostReport/25.png' FROM reports WHERE item_name = 'Black Hydro Flask Standard Mouth' UNION ALL
+SELECT report_id, '../../assets/IMG_LostReport/26.png' FROM reports WHERE item_name = 'Black Hydro Flask Standard Mouth' UNION ALL
+
+SELECT report_id, '../../assets/IMG_LostReport/27.png' FROM reports WHERE item_name = 'Zara Beige Knit Cardigan' UNION ALL
+SELECT report_id, '../../assets/IMG_LostReport/28.png' FROM reports WHERE item_name = 'Zara Beige Knit Cardigan';
+
+-- NEW DATA for images of Claim Requests
+INSERT INTO reports_images (report_id, img_filepath)
+SELECT report_id, '../../assets/IMG_ClaimRequest/6.png' FROM reports WHERE item_id = 46 AND student_id = 6 AND type = 'Claim request' UNION ALL
+SELECT report_id, '../../assets/IMG_ClaimRequest/7.png' FROM reports WHERE item_id = 34 AND type = 'Claim request' UNION ALL
+SELECT report_id, '../../assets/IMG_ClaimRequest/8.png' FROM reports WHERE item_id = 23 AND type = 'Claim request' UNION ALL
+SELECT report_id, '../../assets/IMG_ClaimRequest/9.png' FROM reports WHERE item_id = 3 AND type = 'Claim request' UNION ALL
+SELECT report_id, '../../assets/IMG_ClaimRequest/10.png' FROM reports WHERE item_id = 35 AND student_id = 8 AND type = 'Claim request' UNION ALL
+SELECT report_id, '../../assets/IMG_ClaimRequest/11.png' FROM reports WHERE item_id = 24 AND type = 'Claim request' UNION ALL
+SELECT report_id, '../../assets/IMG_ClaimRequest/12.png' FROM reports WHERE item_id = 46 AND student_id = 8 AND type = 'Claim request' UNION ALL
+SELECT report_id, '../../assets/IMG_ClaimRequest/13.png' FROM reports WHERE item_id = 35 AND student_id = 6 AND type = 'Claim request';
+
 -- =========================================================================
 -- 3. SURRENDER FORMS (2 pictures per record)
 -- Dynamically finds the right report_id using your unique item_names
@@ -698,3 +803,35 @@ SELECT report_id, '../../assets/IMG_SurrenderForm/surrender8.png' FROM reports W
 
 SELECT report_id, '../../assets/IMG_SurrenderForm/surrender9.png'  FROM reports WHERE item_name = 'Student Beep Card' UNION ALL
 SELECT report_id, '../../assets/IMG_SurrenderForm/surrender10.png' FROM reports WHERE item_name = 'Student Beep Card';
+
+-- NEW DATA for Surrender Forms images
+INSERT INTO reports_images (report_id, img_filepath)
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender11.png' FROM reports WHERE item_name = 'Kindle Paperwhite 11th Gen' AND type = 'Surrender Form' UNION ALL
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender12.png' FROM reports WHERE item_name = 'Kindle Paperwhite 11th Gen' AND type = 'Surrender Form' UNION ALL
+
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender13.png' FROM reports WHERE item_name = 'Keychron K2 Mechanical Keyboard' AND type = 'Surrender Form' UNION ALL
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender14.png' FROM reports WHERE item_name = 'Keychron K2 Mechanical Keyboard' AND type = 'Surrender Form' UNION ALL
+
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender15.png' FROM reports WHERE item_name = 'Casio FX-991EX ClassWiz' AND type = 'Surrender Form' UNION ALL
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender16.png' FROM reports WHERE item_name = 'Casio FX-991EX ClassWiz' AND type = 'Surrender Form' UNION ALL
+
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender17.png' FROM reports WHERE item_name = 'Jansport SuperBreak Backpack' AND type = 'Surrender Form' UNION ALL
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender18.png' FROM reports WHERE item_name = 'Jansport SuperBreak Backpack' AND type = 'Surrender Form' UNION ALL
+
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender19.png' FROM reports WHERE item_name = 'Bottega Veneta Intrecciato Pouch' AND type = 'Surrender Form' UNION ALL
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender20.png' FROM reports WHERE item_name = 'Bottega Veneta Intrecciato Pouch' AND type = 'Surrender Form' UNION ALL
+
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender21.png' FROM reports WHERE item_name = 'Longchamp Le Pliage Tote' AND type = 'Surrender Form' UNION ALL
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender22.png' FROM reports WHERE item_name = 'Longchamp Le Pliage Tote' AND type = 'Surrender Form' UNION ALL
+
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender23.png' FROM reports WHERE item_name = 'Ray-Ban Wayfarer Sunglasses' AND type = 'Surrender Form' UNION ALL
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender24.png' FROM reports WHERE item_name = 'Ray-Ban Wayfarer Sunglasses' AND type = 'Surrender Form' UNION ALL
+
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender25.png' FROM reports WHERE item_name = 'Acne Studios Wool Scarf' AND type = 'Surrender Form' UNION ALL
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender26.png' FROM reports WHERE item_name = 'Acne Studios Wool Scarf' AND type = 'Surrender Form' UNION ALL
+
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender27.png' FROM reports WHERE item_name = 'Nike Windrunner Jacket' AND type = 'Surrender Form' UNION ALL
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender28.png' FROM reports WHERE item_name = 'Nike Windrunner Jacket' AND type = 'Surrender Form' UNION ALL
+
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender29.png' FROM reports WHERE item_name = 'Sony WH-1000XM5 Hard Case' AND type = 'Surrender Form' UNION ALL
+SELECT report_id, '../../assets/IMG_SurrenderForm/surrender30.png' FROM reports WHERE item_name = 'Sony WH-1000XM5 Hard Case' AND type = 'Surrender Form';
