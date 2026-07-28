@@ -115,7 +115,7 @@ function renderReports(reports) {
                 ${
                     report.editable
                         ? `<a href="student_edit-report.php?id=${report.report_id}" class="edit-report-link">Edit</a>`
-                        : `<span class="edit-report-disabled">—</span>`
+                        : `<span class="edit-report-disabled"></span>`
                 }
             </td>
 

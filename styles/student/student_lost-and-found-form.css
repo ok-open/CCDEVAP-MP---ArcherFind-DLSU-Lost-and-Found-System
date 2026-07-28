@@ -99,11 +99,34 @@ label {
     height: 100%;
 }
 
+.upload-wrapper {
+    width: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.upload-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.upload-actions button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .upload-box {
-    flex: 2;
+    flex: 1;
     position: relative;
     width: 100%;
-    min-height: 300px;
+    min-height: 360px;
     min-width: 150px;
     border-radius: var(--radius-small);
     background-color: color-mix(in srgb, var(--color-secondary-hover) 50%, transparent);
@@ -112,7 +135,19 @@ label {
     justify-content: center;
     cursor: pointer;
     overflow: hidden;
-    border: px dashed var(--color-secondary-hover);
+    border: 2px dashed color-mix(in srgb, var(--color-secondary-hover) 70%, transparent);
+    box-sizing: border-box;
+}
+
+.upload-area {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
 .upload-box input {
@@ -135,30 +170,71 @@ label {
 .preview-container {
     position: absolute;
     inset: 0;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 12px;
     box-sizing: border-box;
     z-index: 1;
 }
 
+.preview-container .preview-thumb-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
 .preview-container .preview-thumb {
-    width: calc(50% - 8px);
-    height: calc(50% - 8px);
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 10px;
+}
+
+.preview-container .preview-remove-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    border: 2px solid white;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-primary-dark) 90%, black 10%);
+    color: white;
+    font-size: 22px;
+    line-height: 1;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.preview-container .preview-remove-btn:hover {
+    transform: scale(1.08);
+    background: var(--color-primary);
 }
 
 /* Keep upload text centered above previews */
 .upload-text {
     position: absolute;
+    inset: 0;
     z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    width: 100%;
+    padding: 14px;
+    box-sizing: border-box;
+    pointer-events: none;
 }
 
 .submit-button {
@@ -193,6 +269,10 @@ label {
     .form-wrapper {
         display: flex;
         flex-direction: column;
+    }
+
+    .upload-box {
+        min-height: 280px;
     }
 }
 
@@ -255,4 +335,17 @@ label {
     #toast.show {
         transform: translate(-50%, 0);
     }
+}
+
+.upload-actions button {
+    padding: var(--space-small);
+    border: none;
+    outline: none;
+    color: var(--color-secondary);
+    border-radius: 8px;
+    transition: 0.2s ease-out;
+}
+
+.upload-actions button:hover {
+    filter: brightness(1.20);
 }

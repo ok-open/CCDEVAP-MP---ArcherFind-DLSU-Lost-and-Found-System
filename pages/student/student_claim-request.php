@@ -239,11 +239,19 @@
             <!-- RIGHT SIDE -->
             <section class="form-right">
                 <!-- UPLOAD PROOF OF OWNERSHIP (up to 4 images) -->
-                <label class="upload-box">
-                    <input type="file" name="images[]" accept="image/*" multiple>
-                    <span class="upload-text">Upload up to 4 images </span>
-                    <div class="preview-container"></div>
-                </label>
+                <div class="upload-wrapper">
+                    <div class="upload-actions">
+                        <button type="button" class="yes-button" data-action="add-images">Add pictures</button>
+                        <button type="button" class="no-button" data-action="remove-images">Remove pictures</button>
+                    </div>
+                    <div class="upload-box">
+                        <label class="upload-area">
+                            <input type="file" name="images[]" accept="image/*" multiple>
+                            <span class="upload-text">Upload up to 4 images</span>
+                            <div class="preview-container"></div>
+                        </label>
+                    </div>
+                </div>
 
                 <!-- DESCRIBE FEATURES -->
                 <label>

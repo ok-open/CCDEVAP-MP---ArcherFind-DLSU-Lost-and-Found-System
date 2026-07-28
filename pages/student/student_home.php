@@ -142,13 +142,10 @@
 
             <div class="intro-buttons">
                 <button type="button" class="green-button" onclick="location.href='student_item-view.php'">
-                    Lost something?
-                    <p>Browse surrendered items or report a lost belonging!
-                    </p>
+                    Report Lost
                 </button>
                 <button type="button" class="green-button" onclick="location.href='student_surrender-form.php'">
-                    Found something?
-                    <p>Fill out a form to surrender the item that you found!</p>
+                    Report Found
                 </button>
             </div>
 

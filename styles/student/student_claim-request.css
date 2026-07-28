@@ -82,6 +82,14 @@
     border: px dashed var(--color-secondary-hover);
 }
 
+.upload-actions {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    top: 10px;
+    left: 10px;
+}
+
 .upload-box input {
     position: absolute;
     width: 100%;
@@ -258,4 +266,8 @@
     #toast.show{
         transform: translate(-50%, 0);
     }
+}
+
+.upload-button button {
+    padding: var(--space-small);
 }
