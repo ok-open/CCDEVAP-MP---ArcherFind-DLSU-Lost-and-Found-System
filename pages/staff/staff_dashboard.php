@@ -272,42 +272,15 @@
 
                 <div class="card-row">
 
-                    <div class="stat-grid-wrapper">
+                    <div class="stat-grid green-border card">
 
-                        <div class="stat-grid green-border card">
-                            <h5>Total Users</h5>
-                            <hr>
-                            <h3>
-                                <span class="stat-count" id="totalUsers">0</span>
-                            </h3>
-                        </div>
+                        <h5>Total Users</h5>
 
-                        <div class="stat-grid green-border card">
-                            <h5>Students Active</h5>
-                            <hr>
-                            <h3>
-                                <span class="stat-count" id="studentCount">0</span>
-                            </h3>
-                        </div>
+                        <hr>
 
-                        <div class="stat-grid green-border card">
-                            <h5>Staff Active</h5>
-                            <hr>
-                            <h3>
-                                <span class="stat-count" id="staffCount">0</span>
-                            </h3>
-                        </div>
-
-                        <div class="stat-block green-border card">
-                            <h5>Admin Active</h5>
-                            <hr>
-                            <h3>
-                                <span class="stat-count" id="adminCount">0</span>
-                            </h3>
-                        </div>
+                        <h1 class="stat-count" id="totalUsers">0</h1>
 
                     </div>
-
 
                     <div class="graph-card card">
 
