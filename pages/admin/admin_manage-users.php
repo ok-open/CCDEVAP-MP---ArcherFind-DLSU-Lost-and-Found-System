@@ -222,6 +222,101 @@
             </tbody>
         </table>
     </div>
-</body>
 
+    <!-- ===================== MODALS ===================== -->
+
+<div id="modalOverlay" class="modal-overlay">
+
+    <!-- ADD / EDIT USER -->
+    <div id="userModal" class="modal-box">
+
+        <h2 id="userModalTitle">Add User</h2>
+
+        <input type="hidden" id="modalUserId">
+
+        <label>First Name</label>
+        <input type="text" id="modalFirstName">
+
+        <label>Last Name</label>
+        <input type="text" id="modalLastName">
+
+        <label>Email</label>
+        <input type="email" id="modalEmail">
+
+        <div id="passwordGroup">
+            <label>Password</label>
+            <input type="password" id="modalPassword">
+        </div>
+
+        <label>Role</label>
+        <select id="modalRole">
+            <option>Student</option>
+            <option>Staff</option>
+            <option>Admin</option>
+        </select>
+
+        <div class="modal-buttons">
+            <button id="cancelModal">Cancel</button>
+            <button id="saveModal">Save</button>
+        </div>
+
+    </div>
+
+    <!-- RESET PASSWORD -->
+
+    <div id="passwordModal" class="modal-box">
+
+        <h2>Reset Password</h2>
+
+        <input type="hidden" id="passwordUserId">
+
+        <label>New Password</label>
+        <input type="password" id="newPassword">
+
+        <label>Confirm Password</label>
+        <input type="password" id="confirmNewPassword">
+
+        <div class="modal-buttons">
+            <button id="cancelPassword">Cancel</button>
+            <button id="updatePasswordBtn">Reset Password</button>
+        </div>
+
+    </div>
+
+    <!-- DELETE -->
+
+    <div id="deleteModal" class="modal-box">
+
+        <h2>Delete User</h2>
+
+        <p id="deleteMessage"></p>
+
+        <input type="hidden" id="deleteUserId">
+
+        <div class="modal-buttons">
+            <button id="cancelDelete">Cancel</button>
+            <button id="confirmDelete">Delete</button>
+        </div>
+
+    </div>
+
+    <div id="successModal" class="modal-box" style="display:none;">
+
+    <h2>Success</h2>
+
+    <p id="successMessage"></p>
+
+    <div class="modal-buttons">
+        <button id="closeSuccess">OK</button>
+    </div>
+
+</div>
+
+</div>
+
+
+
+
+</body>
 </html>
+
