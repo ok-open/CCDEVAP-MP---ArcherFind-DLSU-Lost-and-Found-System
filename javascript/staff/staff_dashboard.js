@@ -443,19 +443,6 @@ async function loadDashboardSummary() {
                 .textContent = data.totalUsers;
 
             document
-                .getElementById("studentCount")
-                .textContent = data.students;
-
-            document
-                .getElementById("staffCount")
-                .textContent = data.staff;
-
-            document
-                .getElementById("adminCount")
-                .textContent = data.admins;
-
-
-            document
                 .getElementById("analyticsTotalReports")
                 .textContent = data.totalReports;
 
