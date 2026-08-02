@@ -219,6 +219,42 @@ public function updateManagedUser(
     ]);
 }   
 
+/**
+ * Reset another user's password (Admin only).
+ */
+public function resetManagedUserPassword($userId, $passwordHash)
+{
+    $sql = "UPDATE users
+            SET password_hash = :password_hash
+            WHERE user_id = :user_id
+            AND deleted = '0'";
+
+    $stmt = $this->conn->prepare($sql);
+
+    return $stmt->execute([
+        ":password_hash" => $passwordHash,
+        ":user_id" => $userId
+    ]);
+}
+
+/**
+ * Admin updates another user's password.
+ */
+public function updateManagedUserPassword($userId, $passwordHash)
+{
+    $sql = "UPDATE users
+            SET password_hash = :password_hash
+            WHERE user_id = :user_id
+            AND deleted = '0'";
+
+    $stmt = $this->conn->prepare($sql);
+
+    return $stmt->execute([
+        ":password_hash" => $passwordHash,
+        ":user_id" => $userId
+    ]);
+}
+
     /**
      * Get the ID of the last inserted user.
      */
