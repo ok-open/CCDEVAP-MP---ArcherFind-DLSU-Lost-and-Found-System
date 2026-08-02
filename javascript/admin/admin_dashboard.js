@@ -298,9 +298,9 @@ async function loadDashboardSummary() {
 
         if (data.success) {
             document.getElementById("totalUsers").textContent = data.totalUsers;
-            document.getElementById("studentCount").textContent = data.students;
-             document.getElementById("staffCount").textContent = data.staff;
-             document.getElementById("adminCount").textContent = data.admins;
+           // document.getElementById("studentCount").textContent = data.students;
+            // document.getElementById("staffCount").textContent = data.staff;
+            // document.getElementById("adminCount").textContent = data.admins;
              document.getElementById("analyticsTotalReports").textContent = data.totalReports;
              document.getElementById("analyticsTotalItems").textContent = data.totalItems;
              document.getElementById("totalReports").textContent = data.totalReports;
