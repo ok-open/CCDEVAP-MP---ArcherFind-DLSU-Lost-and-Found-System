@@ -124,8 +124,111 @@ select.control-box {
     transition: 0.2s ease;
 }
 
+.password-btn {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+}
+
+.password-btn:hover {
+    background-color: #1d4ed8;
+}
+
 .edit-btn { background-color: var(--color-successMsg); }
 .edit-btn:hover { background-color: var(--color-successMsg-hover) }
 
 .delete-btn { background-color: var(--color-errorMsg); }
 .delete-btn:hover { background-color: var(--color-errorMsg-hover); }
+
+/* =========================
+   MODALS
+========================= */
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    z-index:9999;
+}
+
+.modal-box{
+
+    display:none;
+
+    background:white;
+
+    width:420px;
+
+    max-width:90%;
+
+    border-radius:12px;
+
+    padding:24px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+.modal-box h2{
+
+    margin-top:0;
+    margin-bottom:20px;
+}
+
+.modal-box label{
+
+    display:block;
+
+    margin-top:15px;
+    margin-bottom:5px;
+
+    font-weight:600;
+}
+
+.modal-box input,
+.modal-box select{
+
+    width:100%;
+
+    padding:10px;
+
+    border:1px solid #ccc;
+
+    border-radius:6px;
+
+    box-sizing:border-box;
+}
+
+.modal-buttons{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:10px;
+
+    margin-top:25px;
+}
+
+.modal-buttons button{
+
+    padding:10px 18px;
+
+    cursor:pointer;
+}
+
+#successModal{
+    display:none;
+    width:400px;
+}
+
+#successMessage{
+    margin:20px 0;
+    text-align:center;
+}
+
