@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 // This is the controller, ReportListController.php
 require_once "../../db.php";
-require_once "../../models/Report.php";
+require_once "../../models/Reports.php";
 
 // Start session to get the current staff user ID
 if (session_status() === PHP_SESSION_NONE) { //In case the session started already

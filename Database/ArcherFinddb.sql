@@ -1,5 +1,5 @@
--- CREATE DATABASE ArcherFinddb;
--- USE archerfinddb;
+ CREATE DATABASE ArcherFinddb;
+ USE archerfinddb;
 
 -- =========================================================================
 -- 1. INDEPENDENT & LOOKUP TABLES
