@@ -1,9 +1,54 @@
 $(document).ready(async function () {
 
+    let currentMode = "";
+
+    function openOverlay() {
+        $("#modalOverlay").css("display", "flex");
+    }
+
+    function closeOverlay() {
+        $("#modalOverlay").hide();
+        $(".modal-box").hide();
+
+        $("#modalUserId").val("");
+        $("#modalFirstName").val("");
+        $("#modalLastName").val("");
+        $("#modalEmail").val("");
+        $("#modalPassword").val("");
+        $("#modalRole").val("Student");
+    }
+
+    function showUserModal(mode) {
+
+        currentMode = mode;
+
+        $("#passwordGroup").show();
+
+        if (mode === "add") {
+
+            $("#userModalTitle").text("Add User");
+            $("#saveModal").text("Add User");
+
+        } else {
+
+            $("#userModalTitle").text("Edit User");
+            $("#saveModal").text("Save Changes");
+
+            $("#passwordGroup").hide();
+
+        }
+
+        $(".modal-box").hide();
+
+        $("#userModal").show();
+
+        openOverlay();
+    }
+
     let data = [];
 
     try {
-        const response = await fetch("../../controllers/ManageUsersController.php?action=list");
+        const response = await fetch("../../controllers/UsersController.php?action=list");
         const result = await response.json();
 
         if (result.success) {
@@ -31,6 +76,7 @@ $(document).ready(async function () {
             render: function (data, type, row) {
                 return `
                     <button class="function-button edit-btn" data-id="${row.user_id}">Edit</button>
+                    <button class="function-button password-btn" data-id="${row.user_id}">Password</button>
                     <button class="function-button delete-btn" data-id="${row.user_id}">Delete</button>
                 `;
             }
@@ -40,170 +86,296 @@ $(document).ready(async function () {
     });
 
     // ADD USER BUTTON CLICK
-    $('#addUserBtn').on('click', async function () {
+    $('#addUserBtn').click(function () {
 
-        const firstName = prompt("First Name:");
-        if (firstName === null) return;
+        $("#modalUserId").val("");
+        $("#modalFirstName").val("");
+        $("#modalLastName").val("");
+        $("#modalEmail").val("");
+        $("#modalPassword").val("");
+        $("#modalRole").val("Student");
 
-        const lastName = prompt("Last Name:");
-        if (lastName === null) return;
+        showUserModal("add");
 
-        const email = prompt("DLSU Email:");
-        if (email === null) return;
+    });
 
-        const password = prompt("Password:");
-        if (password === null) return;
-
-        const role = prompt("Role (Student, Staff, Admin):", "Student");
-        if (role === null) return;
+    // SAVE BUTTON
+    $("#saveModal").click(async function () {
 
         try {
 
-            const response = await fetch("../../controllers/ManageUsersController.php?action=add", {
+            let url = "";
+            let body = {};
+
+            if (currentMode === "add") {
+
+                url = "../../controllers/UsersController.php?action=add";
+
+                body = {
+                    first_name: $("#modalFirstName").val(),
+                    last_name: $("#modalLastName").val(),
+                    email: $("#modalEmail").val(),
+                    password: $("#modalPassword").val(),
+                    role: $("#modalRole").val()
+                };
+
+            } else {
+
+                url = "../../controllers/UsersController.php?action=update";
+
+                body = {
+                    user_id: $("#modalUserId").val(),
+                    first_name: $("#modalFirstName").val(),
+                    last_name: $("#modalLastName").val(),
+                    email: $("#modalEmail").val(),
+                    role: $("#modalRole").val()
+                };
+
+            }
+
+            const response = await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({
-                    first_name: firstName,
-                    last_name: lastName,
-                    email: email,
-                    password: password,
-                    role: role
-                })
+                body: JSON.stringify(body)
             });
 
             const result = await response.json();
 
-            if (result.success) {
+            if (!result.success) {
+                alert(result.message);
+                return;
+            }
+
+            if (currentMode === "add") {
 
                 table.row.add({
                     user_id: result.user_id,
-                    first_name: firstName,
-                    last_name: lastName,
-                    email: email.toLowerCase(),
-                    role: role
+                    first_name: $("#modalFirstName").val(),
+                    last_name: $("#modalLastName").val(),
+                    email: $("#modalEmail").val(),
+                    role: $("#modalRole").val()
                 }).draw(false);
 
-                alert("Account added successfully.");
-
             } else {
-                alert("Failed to add account: " + result.message);
+
+                const row = table.row(
+                    $('.edit-btn[data-id="' + $("#modalUserId").val() + '"]').closest('tr')
+                );
+
+                const user = row.data();
+
+                user.first_name = $("#modalFirstName").val();
+                user.last_name = $("#modalLastName").val();
+                user.email = $("#modalEmail").val();
+                user.role = $("#modalRole").val();
+
+                row.data(user).draw(false);
+
             }
 
-        } catch (error) {
-            console.error("Add User Error:", error);
-            alert("An error occurred while adding the account.");
+            closeOverlay();
+
+        } catch (err) {
+
+            console.error(err);
+
         }
 
     });
 
     // EDIT BUTTON CLICK
-    $('#manageUsersTable tbody').on('click', '.edit-btn', async function () {
+    $('#manageUsersTable tbody').on('click', '.edit-btn', function () {
 
-        const button = $(this);
-        const row = table.row(button.closest('tr'));
+    currentMode = "edit";
+
+    const row = table.row($(this).closest('tr'));
+    const user = row.data();
+
+    $("#modalUserId").val(user.user_id);
+
+    $("#modalFirstName").val(user.first_name);
+
+    $("#modalLastName").val(user.last_name);
+
+    $("#modalEmail").val(user.email);
+
+    $("#modalRole").val(user.role);
+
+    $("#passwordGroup").hide();
+
+    $("#userModalTitle").text("Edit User");
+
+    $("#saveModal").text("Save Changes");
+
+    $(".modal-box").hide();
+
+    $("#userModal").show();
+
+    openOverlay();
+
+});
+    
+    // PASSWORD BUTTON CLICK
+    $('#manageUsersTable tbody').on('click', '.password-btn', function () {
+
+        currentMode = "password";
+
+        const row = table.row($(this).closest('tr'));
         const user = row.data();
 
-        const firstName = prompt("First Name:", user.first_name);
-        if (firstName === null) return;
+        $("#passwordUserId").val(user.user_id);
 
-        const lastName = prompt("Last Name:", user.last_name);
-        if (lastName === null) return;
+        $("#newPassword").val("");
+        $("#confirmNewPassword").val("");
 
-        const email = prompt("Email:", user.email);
-        if (email === null) return;
+        $(".modal-box").hide();
 
-        const role = prompt(
-            "Role (Student, Staff, Admin):",
-            user.role
-        );
+        $("#passwordModal").show();
 
-        if (role === null) return;
-
-        try {
-
-            const response = await fetch("../../controllers/ManageUsersController.php?action=update", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    user_id: user.user_id,
-                    first_name: firstName,
-                    last_name: lastName,
-                    email: email,
-                    role: role
-                })
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-
-                user.first_name = firstName;
-                user.last_name = lastName;
-                user.email = email;
-                user.role = role;
-
-                row.data(user).draw(false);
-
-                alert("Account updated successfully.");
-
-            } else {
-                alert("Failed to update account: " + result.message);
-            }
-
-        } catch (error) {
-            console.error("Update User Error:", error);
-            alert("An error occurred while updating the account.");
-        }
+        openOverlay();
 
     });
 
-   // DELETE BUTTON CLICK
-    $('#manageUsersTable tbody').on('click', '.delete-btn', async function () {
+    $("#updatePasswordBtn").click(async function () {
 
-        const button = $(this);
-        const id = button.data('id');
+        const password = $("#newPassword").val();
+        const confirm = $("#confirmNewPassword").val();
 
-        const confirmed = confirm(
-            "Are you sure you want to delete this account?"
-        );
+        if (password === "" || confirm === "") {
 
-        if (!confirmed) {
+            alert("Please complete all fields.");
+            return;
+        }
+
+        if (password !== confirm) {
+
+            alert("Passwords do not match.");
             return;
         }
 
         try {
 
-            const response = await fetch("../../controllers/ManageUsersController.php?action=delete", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    user_id: id
-                })
-            });
+            const response = await fetch(
+                "../../controllers/UsersController.php?action=resetPassword",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        user_id: $("#passwordUserId").val(),
+
+                        password: password
+
+                    })
+
+                });
 
             const result = await response.json();
 
             if (result.success) {
-                table.row(button.closest('tr')).remove().draw();
 
-                alert("Account deleted successfully.");
+                closeOverlay();
+
+                showSuccess("Password updated successfully!");
+
             } else {
-                alert("Failed to delete account: " + result.message);
+
+                alert(result.message);
+
             }
 
         } catch (error) {
-            console.error("Delete User Error:", error);
-            alert("An error occurred while deleting the account.");
+
+            console.error(error);
+
         }
 
     });
+  
+    // DELETE BUTTON CLICK
+    $('#manageUsersTable tbody').on('click', '.delete-btn', function () {
 
+        const row = table.row($(this).closest('tr'));
+        const user = row.data();
+
+        $("#deleteUserId").val(user.user_id);
+
+        $("#deleteMessage").html(
+            `Are you sure you want to delete <b>${user.first_name} ${user.last_name}</b>?`
+        );
+
+        $(".modal-box").hide();
+
+        $("#deleteModal").show();
+
+        openOverlay();
+
+    });
+
+    $("#confirmDelete").click(async function () {
+
+        try {
+
+            const id = $("#deleteUserId").val();
+
+            const response = await fetch(
+                "../../controllers/UsersController.php?action=delete",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        user_id: id
+
+                    })
+
+                });
+
+            const result = await response.json();
+
+            if (!result.success) {
+
+                alert(result.message);
+
+                return;
+
+            }
+
+            table.rows().every(function () {
+
+                if (this.data().user_id == id) {
+
+                    this.remove();
+
+                }
+
+            });
+
+            table.draw(false);
+
+            closeOverlay();
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+        }
+
+    });
 
     // map sortField values to actual column indices
     var columnMap = {
@@ -247,4 +419,39 @@ $(document).ready(async function () {
             table.column(4).search('^' + value + '$', true, false).draw();
         }
     });
+
+    $("#cancelModal").click(function () {
+    closeOverlay();
+    });
+
+    $("#cancelPassword").click(function () {
+        closeOverlay();
+    });
+
+    $("#cancelDelete").click(function () {
+        closeOverlay();
+    });
+
+    $("#modalOverlay").click(function (e) {
+
+        if (e.target.id === "modalOverlay") {
+            closeOverlay();
+        }
+
+    });
+});
+
+function showSuccess(message){
+
+    $("#successMessage").text(message);
+
+    $("#modalOverlay").show();
+    $("#successModal").show();
+}
+
+$("#closeSuccess").click(function(){
+
+    $("#successModal").hide();
+    $("#modalOverlay").hide();
+
 });
