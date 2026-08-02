@@ -200,33 +200,14 @@
                 <!-- ROW 1: USER DISTRIBUTION -->
                 <div class="card-row">
                     <!-- Stat Block: Total Users -->
-                    <div class="stat-grid-wrapper">
-                        <div class="stat-grid green-border card">
-                            <h5>Total Users</h5>
-                            <hr>
-                            <h3><span class="stat-count" id="totalUsers">0</span></h3>
-                        </div>
+                   <div class="stat-grid green-border card">
+                        <h5>Total Users</h5>
+                        <hr>
 
-                        <!-- Stat Block: Students Active Card -->
-                        <div class="stat-grid green-border card">
-                            <h5>Students Active</h5>
-                            <hr>
-                            <h3><span class="stat-count" id="studentCount">0</span></h3>
-                        </div>
-
-                        <!-- Stat Block: Staff Active Card -->
-                        <div class="stat-grid green-border card">
-                            <h5>Staff Active</h5>
-                            <hr>
-                            <h3><span class="stat-count" id="staffCount">0</span></h3>
-                        </div>
-
-                        <div class="stat-block green-border card">
-                            <h5>Admin Active</h5>
-                            <hr>
-                            <h3><span class="stat-count" id="adminCount">0</span></h3>
-                        </div>
+                        <h1 class="stat-count" id="totalUsers">0</h1>
                     </div>
+
+                    
 
                     <!-- Stat Block / GRAPH: User Distribution Graph -->
                     <div class="graph-card card">
