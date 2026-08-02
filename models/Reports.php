@@ -131,6 +131,78 @@ class Reports
         return $stmt->execute();
     }
 
+    // Retrieve all images attached to a report.
+    public function getReportImages($reportId)
+    {
+        $sql = "
+            SELECT image_id, img_filepath
+            FROM reports_images
+            WHERE report_id = :report_id
+            ORDER BY image_id ASC
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":report_id", $reportId);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Fetch exact image rows for a report limited to specific image IDs.
+    public function getReportImagesByIds($reportId, $imageIds)
+    {
+        if (empty($imageIds)) {
+            return [];
+        }
+
+        $cleanIds = array_values(array_filter(array_map("intval", $imageIds), function ($id) {
+            return $id > 0;
+        }));
+
+        if (empty($cleanIds)) {
+            return [];
+        }
+
+        $placeholders = implode(",", array_fill(0, count($cleanIds), "?"));
+        $sql = "
+            SELECT image_id, img_filepath
+            FROM reports_images
+            WHERE report_id = ?
+            AND image_id IN ($placeholders)
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(array_merge([(int) $reportId], $cleanIds));
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Delete specific images that belong to a report.
+    public function deleteReportImagesByIds($reportId, $imageIds)
+    {
+        if (empty($imageIds)) {
+            return true;
+        }
+
+        $cleanIds = array_values(array_filter(array_map("intval", $imageIds), function ($id) {
+            return $id > 0;
+        }));
+
+        if (empty($cleanIds)) {
+            return true;
+        }
+
+        $placeholders = implode(",", array_fill(0, count($cleanIds), "?"));
+        $sql = "
+            DELETE FROM reports_images
+            WHERE report_id = ?
+            AND image_id IN ($placeholders)
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute(array_merge([(int) $reportId], $cleanIds));
+    }
+
     public function getLastInsertId()
     {
         return $this->conn->lastInsertId();

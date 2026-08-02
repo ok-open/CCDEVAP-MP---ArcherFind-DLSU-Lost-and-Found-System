@@ -184,7 +184,7 @@
 
                 <div class="cards-wrapper">
                     <!-- User Reports History -->
-                    <div class="card">
+                    <div class="card history-card">
                         <h5>User Reports History</h5>
                         <hr>
                         <table class="data-table" id="report-table">
@@ -209,7 +209,7 @@
                     </div>
 
                     <!-- Notifications -->
-                    <div class="card">
+                    <div class="card notifications-card">
                         <h5>Notifications</h5>
                         <hr>
                         <p>✓ Claim Request Approved</p>

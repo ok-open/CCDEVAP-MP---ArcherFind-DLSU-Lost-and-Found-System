@@ -241,6 +241,11 @@ label {
     padding: var(--space-small);
 }
 
+.form-right textarea {
+    width: 100%;
+    min-height: 130px;
+}
+
 #toast {
     position: fixed;
     top: 100px;
@@ -266,13 +271,48 @@ label {
 }
 
 @media (max-width: 900px) {
+    .surrender-wrapper {
+        padding: var(--space-small);
+    }
+
     .form-wrapper {
         display: flex;
         flex-direction: column;
     }
 
+    .form-right {
+        gap: var(--space-medium);
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .question-box {
+        min-width: 0;
+    }
+
+    .question-box input,
+    .question-box select,
+    .question-box textarea {
+        width: 100%;
+    }
+
+    .upload-actions {
+        justify-content: stretch;
+    }
+
+    .upload-actions button {
+        flex: 1 1 0;
+        min-width: 140px;
+    }
+
     .upload-box {
         min-height: 280px;
+    }
+
+    .form-right .form-button {
+        width: 100%;
     }
 }
 
@@ -322,6 +362,37 @@ label {
 
 
 @media (max-width: 600px) {
+    .form-title h2 {
+        font-size: calc(var(--text-medium) + 2px);
+        line-height: 1.35;
+    }
+
+    .student-claim-request-description {
+        font-size: var(--text-small);
+        line-height: 1.4;
+        word-break: break-word;
+    }
+
+    .required {
+        display: inline-flex;
+        margin-top: 3px;
+    }
+
+    .upload-box {
+        min-height: 220px;
+    }
+
+    .preview-container {
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .preview-container .preview-remove-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 18px;
+    }
+
     #toast {
         top: 80px;
         left: 50%;

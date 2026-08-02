@@ -160,6 +160,43 @@ function handleEditReport($reportsModel)
         $extraDetails
     );
 
+    $removedImageIds = [];
+    if (!empty($_POST["removed_image_ids"])) {
+        $removedImageIds = array_filter(
+            array_map("intval", explode(",", $_POST["removed_image_ids"])),
+            function ($id) {
+                return $id > 0;
+            }
+        );
+    }
+
+    if (!empty($removedImageIds)) {
+        $imagesToDelete = $reportsModel->getReportImagesByIds($reportId, $removedImageIds);
+
+        foreach ($imagesToDelete as $imageRow) {
+            $relativePath = str_replace("../../", "", $imageRow["img_filepath"]);
+            $absolutePath = dirname(__DIR__) . "/" . ltrim($relativePath, "/");
+
+            if (is_file($absolutePath)) {
+                @unlink($absolutePath);
+            }
+        }
+
+        $reportsModel->deleteReportImagesByIds($reportId, $removedImageIds);
+    }
+
+    // Allow students to append up to 4 new proof images while editing.
+    $typeUploadMap = [
+        "Claim request" => ["IMG_ClaimRequest", "claim_"],
+        "Loss Report" => ["IMG_LossReport", "loss_"],
+        "Surrender Form" => ["IMG_SurrenderForm", "surrender_"]
+    ];
+
+    if (isset($typeUploadMap[$report["type"]])) {
+        [$subfolder, $prefix] = $typeUploadMap[$report["type"]];
+        handleReportImageUpload($reportId, $subfolder, $prefix, $reportsModel);
+    }
+
     header("Location: ../pages/student/student_dashboard.php?success=report_updated");
     exit();
 }
@@ -358,6 +395,7 @@ function handleSurrenderForm($reportsModel)
 function handleReportImageUpload($reportId, $subfolder, $prefix, $reportsModel)
 {
     $allowedTypes = ["image/jpeg", "image/png", "image/jpg", "image/webp"];
+    $allowedExtensions = ["jpg", "jpeg", "png", "webp", "jfif"];
     $uploadDirectory = dirname(__DIR__) . "/assets/" . $subfolder . "/";
 
     if (!is_dir($uploadDirectory)) {
@@ -373,9 +411,24 @@ function handleReportImageUpload($reportId, $subfolder, $prefix, $reportsModel)
 
     for ($i = 0; $i < $count && $i < 4; $i++) {
         if ($files['error'][$i] !== UPLOAD_ERR_OK) continue;
-        if (!in_array($files['type'][$i], $allowedTypes)) continue;
 
-        $extension = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
+        $extension = strtolower(pathinfo($files['name'][$i], PATHINFO_EXTENSION));
+        if (!in_array($extension, $allowedExtensions, true)) continue;
+
+        $detectedType = "";
+        if (function_exists("finfo_open")) {
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            if ($finfo) {
+                $detectedType = finfo_file($finfo, $files['tmp_name'][$i]) ?: "";
+                finfo_close($finfo);
+            }
+        }
+
+        $reportedType = $files['type'][$i] ?? "";
+        if (!in_array($detectedType, $allowedTypes, true) && !in_array($reportedType, $allowedTypes, true)) {
+            continue;
+        }
+
         $filename = uniqid($prefix, true) . "." . $extension;
         $destination = $uploadDirectory . $filename;
 
