@@ -9,6 +9,21 @@ class Items
         $this->conn = $database;
     }
 
+    //Auto dispose more than a month old items
+    //Runs when the Student enters the student_item-view page
+    public function runAutoDisposalItems(){
+        $this->conn->exec("SET sql_safe_updates = 0;");
+
+        $this->conn->exec("
+            UPDATE items 
+            SET deleted = '1', status='Disposed' 
+            WHERE deleted = '0' 
+            AND created_at < DATE_SUB(NOW(), INTERVAL 1 MONTH);
+        ");
+             echo "<script>console.log('Disposed Items')</script>";
+        $this->conn->exec("SET sql_safe_updates = 1;");
+    }
+
     public function getAvailableItems($search = "", $category = "", $sort = "recent")
     {
         $sql = "
