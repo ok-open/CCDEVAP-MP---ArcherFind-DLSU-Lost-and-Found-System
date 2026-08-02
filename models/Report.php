@@ -54,9 +54,26 @@ class Reports{
         }
     }
 
+    //Auto dispose more than a month old reports
+    //Runs when the Staff/Admin enters the claim request, loss reports, or surrender form pages
+    public function runAutoDisposalReports(){
+        // Disable safe updates for this PDO connection session only
+        $this->conn->exec("SET sql_safe_updates = 0;");
+
+        $this->conn->exec("
+            UPDATE reports 
+            SET deleted = '1' 
+            WHERE status = 'Active' 
+            AND deleted = '0' 
+            AND created_at < DATE_SUB(NOW(), INTERVAL 1 MONTH);
+        ");
+             echo "<script>console.log('Disposed Reports')</script>";
+        // Re-enable safe updates for security
+        $this->conn->exec("SET sql_safe_updates = 1;");
+    }
+
     // 1. Gets the most recently inserted item ID for a specific surrendered_by user
     // USED WHEN A SURRENDER FORM IS ACCEPTED, and the surrendered item is added to the ITEMS table
-    
     public function getLastInsertedItem($studentId) {
         $sql = "SELECT item_id FROM items 
                 WHERE surrendered_by = :student_id 

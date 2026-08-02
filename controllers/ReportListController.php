@@ -105,6 +105,8 @@ $sortBy = $_GET['sort'] ?? 'recent'; // default to 'recent'
 $reportModel = new Reports($conn);
 
 // 2. Fetch the filtered results
+$reportModel->runAutoDisposalReports();
+
 $lossReports = $reportModel->getLossReports($search, $category, $sortBy);
 $claimRequests = $reportModel->getClaimRequests($search, $category, $sortBy);
 $surrenderForms = $reportModel->getSurrenderForms($search, $category, $sortBy);
