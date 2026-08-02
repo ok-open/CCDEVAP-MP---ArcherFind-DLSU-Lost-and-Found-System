@@ -123,7 +123,7 @@ CREATE TABLE reports (
     when_lost DATETIME,  -- For Claim request or Lost Report
     extra_details TEXT,
     reviewed_by INT,    -- Linked to Staff User ID
-    status ENUM('Active', 'Closed', 'Accepted', 'Resolved', 'Rejected') NOT NULL DEFAULT 'Active',
+    status ENUM('Active', 'Closed',  'Resolved') NOT NULL DEFAULT 'Active',
     type ENUM('Claim request', 'Loss Report', 'Surrender Form'),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
