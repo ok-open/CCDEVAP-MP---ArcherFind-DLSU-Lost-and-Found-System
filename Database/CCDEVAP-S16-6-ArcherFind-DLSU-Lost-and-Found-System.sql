@@ -835,3 +835,15 @@ SELECT report_id, '../../assets/IMG_SurrenderForm/surrender28.png' FROM reports 
 
 SELECT report_id, '../../assets/IMG_SurrenderForm/surrender29.png' FROM reports WHERE item_name = 'Sony WH-1000XM5 Hard Case' AND type = 'Surrender Form' UNION ALL
 SELECT report_id, '../../assets/IMG_SurrenderForm/surrender30.png' FROM reports WHERE item_name = 'Sony WH-1000XM5 Hard Case' AND type = 'Surrender Form';
+
+-- For the auto disposal of reports and items
+UPDATE reports SET created_at = '2026-01-27 23:57:12' WHERE report_id <=10;
+UPDATE items SET created_at = '2026-01-27 23:57:12' WHERE item_id <=10;
+
+INSERT INTO contacts_received (student_id, inquiry, message, status) VALUES
+(1, 'Issue with claiming an item', 'I submitted a claim for a blue backpack found near the library, but I have not received an update yet.', 'Active'),
+(2, 'Account / Verification issues', 'My student email verification link expired before I could click it. Could you resend it?', 'Active'),
+(6, 'Issue with reporting an item', 'I accidentally selected the wrong category when reporting a lost calculator. Is there a way to edit it?', 'Closed'),
+(7, 'General inquiry / Feedback', 'Is there a lost and found physical hub on campus where items are stored before being claimed?', 'Closed'),
+(8, 'Issue with claiming an item', 'The photos I attached to my claim upload keeps failing with a timeout error.', 'Active'),
+(1, 'General inquiry / Feedback', 'Great platform! It would be really helpful to add a search filter by date lost.', 'Closed');
