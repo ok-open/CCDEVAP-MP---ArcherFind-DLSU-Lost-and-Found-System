@@ -15,6 +15,7 @@
     <script src="../../javascript/auth/auth_account.js" defer></script>
     <script src="../../javascript/auth/manage_account.js" defer></script>
     <script src="../../javascript/global/toasts.js" defer></script>
+    <script src="../../javascript/global/manage-account.js" defer></script>
 </head>
 
 <body>
