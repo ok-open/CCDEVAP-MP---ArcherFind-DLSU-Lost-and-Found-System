@@ -14,6 +14,7 @@
     <script src="../../javascript/global/navbar.js" defer></script>
     <script src="../../javascript/auth/auth_account.js" defer></script>
     <script src="../../javascript/auth/manage_account.js" defer></script>
+    <script src="../../javascript/global/manage-account.js" defer></script>
 </head>
 
 <body>
@@ -94,7 +95,7 @@
             <ul class="nav-links">
                 <li><a href="../../pages/staff/staff_dashboard.php">Dashboard</a></li>
                 <li><a href="../../pages/staff/staff_claim-list.php">Claim Requests</a></li>
-                <li><a href="../../pages/staff/staff_report-list.php" class="current-page">Lost Reports</a></li>
+                <li><a href="../../pages/staff/staff_report-list.php">Lost Reports</a></li>
                 <li><a href="../../pages/staff/staff_surrender-list.php">Surrender Forms</a></li>
                 <li>
                     <!-- user profile -->
@@ -106,7 +107,9 @@
                         </button>
                         <div class="user-profile">
                             <p class="user-greeting">Welcome back,<br>
-                                <span class="name_of_user">[superlongname]</span>!
+                                <span class="name_of_user">
+                                    <?= htmlspecialchars($_SESSION["first_name"]) ?>
+                                </span>!
                                 <!-- TODO: TO BE ADJUSTED DEPENDING ON NAME OF USER-->
                             </p>
                             <button type="button" class="manage-account"
