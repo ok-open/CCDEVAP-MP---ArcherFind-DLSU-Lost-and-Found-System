@@ -232,3 +232,57 @@ select.control-box {
     text-align:center;
 }
 
+/* ================= MOBILE MANAGE USERS ================= */
+
+@media (max-width: 768px){
+
+    .controls{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        align-items:stretch;
+    }
+
+    .controls button,
+    .controls input,
+    .controls select,
+    .sort-group{
+        width:100%;
+    }
+
+    .sort-group{
+        display:flex;
+    }
+
+    .sort-group button{
+        width:50px;
+    }
+
+    .table-wrapper{
+        overflow-x:auto;
+    }
+
+    #manageUsersTable{
+        min-width:900px;
+    }
+
+    .mobile-scroll-hint{
+    display:none;
+}
+
+@media (max-width:768px){
+
+    .mobile-scroll-hint{
+        display:block;
+        font-size:0.85rem;
+        color:#666;
+        margin:8px 0;
+        text-align:center;
+        font-style:italic;
+    }
+
+}
+
+}
+
+
