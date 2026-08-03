@@ -315,6 +315,20 @@
         <button id="closeSuccess">OK</button>
     </div>
 
+
+
+</div>
+
+<div id="errorModal" class="modal-box" style="display:none;">
+
+    <h2>Error</h2>
+
+    <p id="errorMessage"></p>
+
+    <div class="modal-buttons">
+        <button id="closeError">OK</button>
+    </div>
+
 </div>
 
 </div>
