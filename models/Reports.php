@@ -345,7 +345,7 @@ class Reports
         ]);
     }
     
-    private function normalizeImagePath($path)
+    public function normalizeImagePath($path)
     {
         if (empty($path)) {
             return $path;
@@ -368,7 +368,7 @@ class Reports
         return $trimmedPath;
     }
 
-    private function normalizeImageValue($value)
+    public function normalizeImageValue($value)
     {
         if (empty($value)) {
             return $value;
@@ -382,7 +382,7 @@ class Reports
         return implode(',', $normalizedPaths);
     }
 
-    private function normalizeImageFields(array &$row)
+    public function normalizeImageFields(array &$row)
     {
         foreach (['image_paths', 'found_item_image', 'proof_images'] as $field) {
             if (isset($row[$field]) && $row[$field] !== null) {

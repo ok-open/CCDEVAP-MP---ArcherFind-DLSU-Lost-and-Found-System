@@ -1,0 +1,25 @@
+createReport --
+getReportsByStudent--
+getReportById--
+addImage--
+getReportImages--
+getReportImagesByIds--
+deleteReportImagesByIds--
+getLastInsertId--
+getStatistics--
+getHistory--
+getLocationFrequency--
+updateReport--
+normalizeImagePath
+normalizeImageValue
+normalizeImageFields
+runAutoDisposalReports
+getLastInsertedItem--
+insertItemImage--
+getSurrenderForms--
+getClaimRequests--
+getLossReports--
+getPossibleMatches--
+getCategories--
+resolveReport--
+closeReport--
