@@ -256,19 +256,13 @@ $(document).ready(async function () {
 
         if (password === "" || confirm === "") {
 
-            showToast(
-                "Please complete all fields.",
-                "var(--color-errorMsg)"
-            );
+            showError("Please complete all fields.");
             return;
         }
 
         if (password !== confirm) {
 
-            showToast(
-                "Passwords do not match.",
-                "var(--color-errorMsg)"
-            );
+            showError("Passwords do not match.");
             return;
         }
 
@@ -306,10 +300,7 @@ $(document).ready(async function () {
 
                 closeOverlay();
 
-                showToast(
-                    result.message,
-                    "var(--color-errorMsg)"
-                );
+                showError(result.message);
 
             }
 
@@ -484,3 +475,19 @@ $("#closeSuccess").click(function(){
     $("#modalOverlay").hide();
 
 });
+
+$("#closeError").click(function(){
+
+    $("#errorModal").hide();
+    $("#modalOverlay").hide();
+
+});
+
+function showError(message){
+
+    $("#errorMessage").text(message);
+
+    $("#modalOverlay").show();
+    $("#errorModal").show();
+
+}
