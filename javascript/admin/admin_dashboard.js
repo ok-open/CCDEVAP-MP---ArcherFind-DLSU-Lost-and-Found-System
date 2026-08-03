@@ -1,13 +1,4 @@
 
-// CURRENT USER
-
-const currentUser = {
-    first_name: "Dan",
-    role: "Admin"
-};
-
-// Display logged in user's name
-document.getElementById("username").textContent = currentUser.first_name;
 
 // COLORS
 
