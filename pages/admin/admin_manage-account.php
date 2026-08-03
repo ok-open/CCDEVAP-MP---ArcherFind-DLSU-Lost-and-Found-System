@@ -14,6 +14,7 @@
     <script src="../../javascript/global/navbar.js" defer></script>
     <script src="../../javascript/auth/auth_account.js" defer></script>
     <script src="../../javascript/auth/manage_account.js" defer></script>
+    <script src="../../javascript/global/toasts.js" defer></script>
 </head>
 
 <body>
@@ -32,7 +33,7 @@
                 <li><a href="../../pages/admin/admin_claim-list.php">Claim Requests</a></li>
                 <li><a href="../../pages/admin/admin_report-list.php">Lost Reports</a></li>
                 <li><a href="../../pages/admin/admin_surrender-list.php">Surrender Forms</a></li>
-                <li><a href="../../pages/admin/admin_manage-student.php">Manage Users</a></li>
+                <li><a href="../../pages/admin/admin_manage-users.php">Manage Users</a></li>
                 <li>
                     <!-- user profile -->
                     <div class="user-button"><button type="button">
@@ -174,7 +175,7 @@
 
             <!-- FORM -->
             <div class="account-form">
-                <form id="disableAccountForm" action="../../controllers/UsersController.php?action=disableAccount" method="POST">
+                <form id="passwordForm" action="../../controllers/UsersController.php?action=updatePassword" method="POST">
                     <h2>Manage Account</h2>
 
                     <!-- FIRST & LAST NAME -->
@@ -273,7 +274,7 @@
                 </form>
 
                <form id="disableAccountForm" action="../../controllers/UsersController.php?action=disableAccount" method="POST">
-                    <button id="disableBtn" class="disable-btn" type="button">
+                    <button id="disableBtn" class="disable-btn" type="submit">
                         Disable Account
                     </button>
                 </form>
