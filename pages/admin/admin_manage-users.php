@@ -99,11 +99,11 @@
         <!-- SIDEBAR OPTIONS -->
         <nav class="sidebar">
             <ul class="nav-links">
-                <li><a href="../../pages/admin/admin_dashboard.php" class="current-page">Dashboard</a></li>
+                <li><a href="../../pages/admin/admin_dashboard.php">Dashboard</a></li>
                 <li><a href="../../pages/admin/admin_claim-list.php">Claim Requests</a></li>
                 <li><a href="../../pages/admin/admin_report-list.php">Lost Reports</a></li>
                 <li><a href="../../pages/admin/admin_surrender-list.php">Surrender Forms</a></li>
-                <li><a href="../../pages/admin/admin_manage-users.php">Manage Users</a></li>
+                <li><a href="../../pages/admin/admin_manage-users.php" class="current-page">Manage Users</a></li>
                 <li>
                     <!-- user profile -->
                     <div class="user-button"><button type="button">
@@ -114,7 +114,9 @@
                         </button>
                         <div class="user-profile">
                             <p class="user-greeting">Welcome back,<br>
-                                <span class="name_of_user">[superlongname]</span>!
+                                <span class="name_of_user">
+                                    <?= htmlspecialchars($_SESSION["first_name"]) ?>
+                                </span>!
                                 <!-- TODO: TO BE ADJUSTED DEPENDING ON NAME OF USER-->
                             </p>
                             <button type="button" class="manage-account"
