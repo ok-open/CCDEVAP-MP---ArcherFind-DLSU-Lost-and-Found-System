@@ -174,7 +174,7 @@
 
             <!-- FORM -->
             <div class="account-form">
-                <form id="passwordForm" action="../../controllers/UpdatePasswordController.php" method="POST">
+                <form id="disableAccountForm" action="../../controllers/UsersController.php?action=disableAccount" method="POST">
                     <h2>Manage Account</h2>
 
                     <!-- FIRST & LAST NAME -->
@@ -272,7 +272,7 @@
                 </button>
                 </form>
 
-                <form id="disableAccountForm" action="../../controllers/DisableAccountController.php" method="POST">
+               <form id="disableAccountForm" action="../../controllers/UsersController.php?action=disableAccount" method="POST">
                     <button id="disableBtn" class="disable-btn" type="button">
                         Disable Account
                     </button>
