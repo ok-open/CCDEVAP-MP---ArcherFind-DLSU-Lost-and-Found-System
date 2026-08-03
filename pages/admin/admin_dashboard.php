@@ -194,7 +194,12 @@
     <div class="wrapper">
         <!-- GREETING HEADER -->
         <section class="dashboard-wrapper">
-            <h1 class="greeting">Hello, <span id="username">Admin</span>!</h1>
+            <h1 class="greeting">
+                Hello,
+                <span id="username">
+                    <?= htmlspecialchars($_SESSION["first_name"]) ?>
+                </span>!
+            </h1>
 
             <div class="cards-wrapper">
                 <!-- ROW 1: USER DISTRIBUTION -->
