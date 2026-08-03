@@ -15,6 +15,27 @@ $userModel = new Users($conn);
 
 /*
 |--------------------------------------------------------------------------
+| Manage Account Redirect by Role
+|--------------------------------------------------------------------------
+*/
+
+function getManageAccountPageByRole(): string
+{
+    $role = $_SESSION["role"] ?? "";
+
+    if ($role === "Admin") {
+        return "../pages/admin/admin_manage-account.php";
+    }
+
+    if ($role === "Staff") {
+        return "../pages/staff/staff_manage-account.php";
+    }
+
+    return "../pages/student/student_manage-account.php";
+}
+
+/*
+|--------------------------------------------------------------------------
 | Determine Action
 |--------------------------------------------------------------------------
 */
@@ -709,6 +730,8 @@ if ($action === "logout") {
 
 if ($action === "updatePassword") {
 
+    $manageAccountPage = getManageAccountPageByRole();
+
     if (!isset($_SESSION["user_id"])) {
 
         header(
@@ -740,7 +763,7 @@ if ($action === "updatePassword") {
     ) {
 
         header(
-            "Location: ../pages/student/student_manage-account.php?error=empty_fields"
+            "Location: {$manageAccountPage}?error=empty_fields"
         );
 
         exit;
@@ -749,7 +772,7 @@ if ($action === "updatePassword") {
     if ($newPassword !== $confirmPassword) {
 
         header(
-            "Location: ../pages/student/student_manage-account.php?error=password_mismatch"
+            "Location: {$manageAccountPage}?error=password_mismatch"
         );
 
         exit;
@@ -788,7 +811,7 @@ if ($action === "updatePassword") {
     )) {
 
         header(
-            "Location: ../pages/student/student_manage-account.php?error=wrong_password"
+            "Location: {$manageAccountPage}?error=wrong_password"
         );
 
         exit;
@@ -806,7 +829,7 @@ if ($action === "updatePassword") {
     )) {
 
         header(
-            "Location: ../pages/student/student_manage-account.php?error=same_password"
+            "Location: {$manageAccountPage}?error=same_password"
         );
 
         exit;
@@ -829,7 +852,7 @@ if ($action === "updatePassword") {
     );
 
     header(
-        "Location: ../pages/student/student_manage-account.php?success=password_updated"
+        "Location: {$manageAccountPage}?success=password_updated"
     );
 
     exit;
@@ -842,6 +865,8 @@ if ($action === "updatePassword") {
 */
 
 if ($action === "disableAccount") {
+
+    $manageAccountPage = getManageAccountPageByRole();
 
     if (!isset($_SESSION["user_id"])) {
 
@@ -870,7 +895,7 @@ if ($action === "disableAccount") {
     }
 
     header(
-        "Location: ../pages/student/student_manage-account.php?error=disable_failed"
+        "Location: {$manageAccountPage}?error=disable_failed"
     );
 
     exit;
