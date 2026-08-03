@@ -470,14 +470,13 @@ $(document).ready(async function () {
 
 function showSuccess(message){
 
-    // hides any toast immediately
-    $("#toast").removeClass("show-toast");
+    $("#toast").removeClass("show-toast show");
 
     $("#successMessage").text(message);
 
     $("#modalOverlay").show();
     $("#successModal").show();
-}
+} 
 
 $("#closeSuccess").click(function(){
 
