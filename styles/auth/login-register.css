@@ -4,14 +4,16 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     gap: var(--space-large);
-    height: 100dvh;
-    width: auto;
+    min-height: 100dvh;
+    width: 100%;
+    padding: var(--space-medium);
     background: var(--BACKGROUND-login) var(--bg-cover);
 }
 
 @media (max-width: 600px) {
-    wrapper {
+    .wrapper {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -22,6 +24,7 @@
 /* ---------- LEFT: LOGIN INTRO ---------- */
 .logo-intro {
     align-content: center;
+    width: min(100%, 42rem);
 }
 /* title and description layout is located in global.css*/
 
@@ -30,12 +33,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: min(100%, 36rem);
 }
 
 .login-register-box {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
     padding: var(--space-medium) var(--space-medium) var(--space-small) var(--space-medium);
     background-color: var(--color-secondary-glass);
     backdrop-filter: blur(5px);
@@ -165,6 +170,7 @@
 footer {
     position: absolute;
     bottom: 0.2vw;
+    width: 100%;
     padding-left: 10px;
     background-color: transparent;
 }
@@ -173,13 +179,30 @@ footer {
 /* mobile responsive view */
 @media (max-width: 768px) {
     .wrapper {
-        display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
+        min-height: auto;
+        padding: var(--space-medium) var(--space-small);
+        gap: var(--space-medium);
+    }
+
+    .logo-intro,
+    .login-register-page {
+        width: 100%;
+    }
+
+    .name {
+        flex-direction: column;
     }
 
     .login-register-details {
-        width: clamp(14rem, 65vw + 2rem, 22rem);
+        width: 100%;
+    }
+
+    footer {
+        position: static;
+        padding: var(--space-small) var(--space-small);
+        text-align: center;
     }
 }
