@@ -15,27 +15,6 @@ $userModel = new Users($conn);
 
 /*
 |--------------------------------------------------------------------------
-| Manage Account Redirect by Role
-|--------------------------------------------------------------------------
-*/
-
-function getManageAccountPageByRole(): string
-{
-    $role = $_SESSION["role"] ?? "";
-
-    if ($role === "Admin") {
-        return "../pages/admin/admin_manage-account.php";
-    }
-
-    if ($role === "Staff") {
-        return "../pages/staff/staff_manage-account.php";
-    }
-
-    return "../pages/student/student_manage-account.php";
-}
-
-/*
-|--------------------------------------------------------------------------
 | Determine Action
 |--------------------------------------------------------------------------
 */
@@ -424,6 +403,34 @@ if ($action === "resetPassword") {
         exit;
     }
 
+    /*
+|--------------------------------------------------------------------------
+| Prevent Same Password
+|--------------------------------------------------------------------------
+*/
+
+$user = $userModel->findById($userId);
+
+if (!$user) {
+
+    echo json_encode([
+        "success" => false,
+        "message" => "User not found."
+    ]);
+
+    exit;
+}
+
+    if (password_verify($password, $user["password_hash"])) {
+
+        echo json_encode([
+            "success" => false,
+            "message" => "New password cannot be the same as the current password."
+        ]);
+
+        exit;
+    }
+
     $hashedPassword = password_hash(
         $password,
         PASSWORD_DEFAULT
@@ -730,8 +737,6 @@ if ($action === "logout") {
 
 if ($action === "updatePassword") {
 
-    $manageAccountPage = getManageAccountPageByRole();
-
     if (!isset($_SESSION["user_id"])) {
 
         header(
@@ -740,6 +745,12 @@ if ($action === "updatePassword") {
 
         exit;
     }
+
+    $manageAccountPage = match ($_SESSION["role"]) {
+        "Admin" => "../pages/admin/admin_manage-account.php",
+        "Staff" => "../pages/staff/staff_manage-account.php",
+        default => "../pages/student/student_manage-account.php",
+    };
 
     $currentPassword =
         trim($_POST["current_password"] ?? "");
@@ -866,8 +877,6 @@ if ($action === "updatePassword") {
 
 if ($action === "disableAccount") {
 
-    $manageAccountPage = getManageAccountPageByRole();
-
     if (!isset($_SESSION["user_id"])) {
 
         header(
@@ -876,6 +885,12 @@ if ($action === "disableAccount") {
 
         exit;
     }
+
+    $manageAccountPage = match ($_SESSION["role"]) {
+        "Admin" => "../pages/admin/admin_manage-account.php",
+        "Staff" => "../pages/staff/staff_manage-account.php",
+        default => "../pages/student/student_manage-account.php",
+    };
 
     if (
         $userModel->disableAccount(

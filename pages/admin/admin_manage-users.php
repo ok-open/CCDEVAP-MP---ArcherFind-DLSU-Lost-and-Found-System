@@ -18,6 +18,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" crossorigin="anonymous" defer></script>
     <script src="https://cdn.datatables.net/2.3.8/js/dataTables.js" defer></script>
     <script src="../../javascript/admin/admin_manage-users.js" defer></script>
+    <script src="../../javascript/global/manage-account.js" defer></script>
 </head>
 
 <body>
@@ -205,6 +206,10 @@
         </div>
     </div>
 
+    <p class="mobile-scroll-hint">
+    ← Swipe horizontally to view all columns →
+    </p>
+
     <div class="table-wrapper">
         <table id="manageUsersTable" class="display">
             <thead>
@@ -314,8 +319,7 @@
 
 </div>
 
-
-
+<div id="toast"></div>
 
 </body>
 </html>

@@ -144,7 +144,10 @@ $(document).ready(async function () {
             const result = await response.json();
 
             if (!result.success) {
-                alert(result.message);
+                showToast(
+                    result.message,
+                    "var(--color-errorMsg)"
+                );
                 return;
             }
 
@@ -176,6 +179,12 @@ $(document).ready(async function () {
             }
 
             closeOverlay();
+
+            if (currentMode === "add") {
+                showSuccess("User added successfully!");
+            } else {
+                showSuccess("Account updated successfully!");
+            }
 
         } catch (err) {
 
@@ -220,6 +229,8 @@ $(document).ready(async function () {
     // PASSWORD BUTTON CLICK
     $('#manageUsersTable tbody').on('click', '.password-btn', function () {
 
+        $("#toast").removeClass("show");
+    
         currentMode = "password";
 
         const row = table.row($(this).closest('tr'));
@@ -245,13 +256,19 @@ $(document).ready(async function () {
 
         if (password === "" || confirm === "") {
 
-            alert("Please complete all fields.");
+            showToast(
+                "Please complete all fields.",
+                "var(--color-errorMsg)"
+            );
             return;
         }
 
         if (password !== confirm) {
 
-            alert("Passwords do not match.");
+            showToast(
+                "Passwords do not match.",
+                "var(--color-errorMsg)"
+            );
             return;
         }
 
@@ -287,7 +304,12 @@ $(document).ready(async function () {
 
             } else {
 
-                alert(result.message);
+                closeOverlay();
+
+                showToast(
+                    result.message,
+                    "var(--color-errorMsg)"
+                );
 
             }
 
@@ -347,7 +369,10 @@ $(document).ready(async function () {
 
             if (!result.success) {
 
-                alert(result.message);
+                showToast(
+                    result.message,
+                    "var(--color-errorMsg)"
+                );
 
                 return;
 
@@ -366,6 +391,8 @@ $(document).ready(async function () {
             table.draw(false);
 
             closeOverlay();
+
+            showSuccess("Account deleted successfully!");
 
         }
 
@@ -442,6 +469,9 @@ $(document).ready(async function () {
 });
 
 function showSuccess(message){
+
+    // hides any toast immediately
+    $("#toast").removeClass("show-toast");
 
     $("#successMessage").text(message);
 
