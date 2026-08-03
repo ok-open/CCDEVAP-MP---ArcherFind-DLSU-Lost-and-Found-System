@@ -522,6 +522,106 @@ p {
 ========================== */
 @media (max-width: 768px) {
 
+    .controls-wrapper {
+        position: static;
+        top: auto;
+        padding: var(--space-small);
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-small);
+    }
+
+    .control-box,
+    .search-bar,
+    .sort-dropdown,
+    .filter-dropdown {
+        width: 100%;
+        min-width: 0;
+        flex: 1 1 auto;
+    }
+
+    .requests-wrapper {
+        padding: var(--space-small);
+        gap: var(--space-small);
+    }
+
+    .request-record {
+        flex-direction: column;
+        padding: var(--space-small);
+    }
+
+    .request-image {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        max-height: 300px;
+        margin-inline: auto;
+    }
+
+    .request-image img {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        max-height: 280px;
+    }
+
+    .prev,
+    .next {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+    }
+
+    .item-name {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-small);
+    }
+
+    .item-name h2 {
+        width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    .request-buttons-panel {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-tiny);
+    }
+
+    .request-button {
+        justify-content: center;
+        width: 100%;
+        min-height: 38px;
+        padding: 0 var(--space-small);
+        font-size: calc(var(--text-tiny) - 3px);
+    }
+
+    .openPanelBtn {
+        grid-column: 1 / -1;
+    }
+
+    .item-column-wrapper {
+        flex-direction: column;
+        gap: var(--space-small);
+    }
+
+    .detail-box input {
+        width: 100%;
+    }
+
     #MainHeader {
         flex-direction: column;
         align-items: stretch;
@@ -605,4 +705,38 @@ p {
         width: 100%;
     }
 
+}
+
+@media (max-width: 480px) {
+    .controls-wrapper {
+        padding: var(--space-tiny);
+    }
+
+    .request-record {
+        padding: var(--space-tiny);
+        gap: var(--space-tiny);
+    }
+
+    .request-image {
+        max-height: 240px;
+        border-width: 5px;
+    }
+
+    .request-image img {
+        max-height: 220px;
+    }
+
+    .request-button {
+        font-size: calc(var(--text-tiny) - 5px);
+    }
+
+    #SidePanel_Iconsee {
+        width: 100%;
+        right: -100%;
+    }
+
+    .modal-content {
+        max-width: 94%;
+        max-height: 78%;
+    }
 }
