@@ -1,4 +1,4 @@
- CREATE DATABASE ArcherFinddb;
+ CREATE DATABASE IF NOT EXISTS ArcherFinddb;
  USE archerfinddb;
 
 -- =========================================================================
