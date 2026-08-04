@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
 INSERT INTO users (first_name, last_name, email, password_hash, role) VALUES
 ('Marc', 'Quizon', 'marc_lesley_quizon@dlsu.edu.ph', '$2y$10$XFJqfJ2SZouRRDskL7g28uhcrS9Z6oh4J2KamzmFGBt9f7CJ/tPTy', 'Student'),
 ('Angelo', 'Almeda', 'angelo_almeda@dlsu.edu.ph', '$2y$10$XFJqfJ2SZouRRDskL7g28uhcrS9Z6oh4J2KamzmFGBt9f7CJ/tPTy', 'Student'),
@@ -847,3 +849,5 @@ INSERT INTO contacts_received (student_id, inquiry, message, status) VALUES
 (7, 'General inquiry / Feedback', 'Is there a lost and found physical hub on campus where items are stored before being claimed?', 'Closed'),
 (8, 'Issue with claiming an item', 'The photos I attached to my claim upload keeps failing with a timeout error.', 'Active'),
 (1, 'General inquiry / Feedback', 'Great platform! It would be really helpful to add a search filter by date lost.', 'Closed');
+
+SET FOREIGN_KEY_CHECKS = 1;
