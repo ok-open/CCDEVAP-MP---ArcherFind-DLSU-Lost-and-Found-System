@@ -394,7 +394,6 @@ class Reports
     //Auto dispose more than a month old reports
     //Runs when the Staff/Admin enters the claim request, loss reports, or surrender form pages
     public function runAutoDisposalReports(){
-        // Disable safe updates for this PDO connection session only
 
         $this->conn->exec("
             UPDATE reports 
