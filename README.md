@@ -44,3 +44,14 @@ OVERVIEW OF FEATURES
 
 TIP!!
 - After testing with these features, it is best to drop the database and run it again, and to avoid commiting any MOVED image files. This is to ensure your project folder contains the image files matching the BASE SAMPLE DATA database
+
+DEPLOYMENT SETUP
+http://ccscloud.dlsu.edu.ph:60157/CCDEVAP-S16-6-ArcherFind-DLSU-Lost-and-Found-System/index.php 
+1. Clone the Git Repository into your virtual environment (git clone GitHub-link)
+2. Then, do 'mysql -u root -p'. Enter your password and create the database (Case sensitive)
+3. Go to the directory where your project is located and do 'mysql -u root -p ArcherFinddb < Database/ArcherFinddb.sql' (Do this for all relevant files)
+4. Make sure to run the SQL files in this order, Schema, Triggers, then Sample Data
+5. To allow the web user to move/add/remove images. Grant access by doing 'sudo chown -R www-data:www-data /var/www/html/CCDEVAP-S16-6-ArcherFind-DLSU-Lost-and-Found-System' and do 'sudo chmod -R 775' to relevant folders
+6. The website should be deployed and accessible through the link above
+**If you need to edit the project on VsCode, simply push the changes to GitHub. Then, on the Virtual Environment run 'git clone origin branch-name'
+
