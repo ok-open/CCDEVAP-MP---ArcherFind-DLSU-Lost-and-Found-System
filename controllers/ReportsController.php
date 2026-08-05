@@ -188,7 +188,7 @@ function handleEditReport($reportsModel)
     // Allow students to append up to 4 new proof images while editing.
     $typeUploadMap = [
         "Claim request" => ["IMG_ClaimRequest", "claim_"],
-        "Loss Report" => ["IMG_LossReport", "loss_"],
+        "Loss Report" => ["IMG_LostReport", "loss_"],
         "Surrender Form" => ["IMG_SurrenderForm", "surrender_"]
     ];
 
@@ -323,7 +323,7 @@ function handleLossReport($reportsModel)
     $reportId = $reportsModel->getLastInsertId();
 
     // Fixed: was incorrectly reusing IMG_SurrenderForm's folder
-    handleReportImageUpload($reportId, "IMG_LossReport", "loss_", $reportsModel);
+    handleReportImageUpload($reportId, "IMG_LostReport", "loss_", $reportsModel);
 
     header("Location: ../pages/student/student_report-item.php?success=submitted&item=" . urlencode($itemName));
     exit();
