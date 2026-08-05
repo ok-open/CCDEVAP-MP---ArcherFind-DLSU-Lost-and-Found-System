@@ -82,7 +82,7 @@ const enableDarkmode = () => {
     localStorage.setItem('darkmode', 'active');
 
     const logos = document.querySelectorAll(".logo");
-    if (logos.length) logos.forEach(logo => logo.src = "../../assets/LOGOS/AF-DARKMODE.png");
+    if (logos.length) logos.forEach(logo => logo.src = "assets/LOGOS/AF-DARKMODE.png");
 
     const aboutImg = document.querySelector('#banner img');
     if (aboutImg) aboutImg.src = "../../assets/BACKGROUNDS/AboutDark.png";
@@ -95,7 +95,7 @@ const disableDarkmode = () => {
     localStorage.setItem('darkmode', null);
 
     const logos = document.querySelectorAll(".logo");
-    if (logos.length) logos.forEach(logo => logo.src = "../../assets/LOGOS/AF-ORIGINAL.png");
+    if (logos.length) logos.forEach(logo => logo.src = "assets/LOGOS/AF-ORIGINAL.png");
 
     const aboutImg = document.querySelector('#banner img');
     if (aboutImg) aboutImg.src = "../../assets/BACKGROUNDS/About.png";
