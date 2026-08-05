@@ -197,7 +197,7 @@
         <h2>The Team Behind ArcherFind</h2>
         <div class="team-grid">
             <div class="team-card"><div class="team-photo"><img src="..\..\assets\IMAGES\Angelo.png" alt="Angelo.png"></div><p>ALMEDA, Angelo</p></div>
-            <div class="team-card"><div class="team-photo"><img src="..\..\assets\IMAGES\Carl.JPG" alt="Carl.JPG"></div><p>CRESPO, Carl</p></div>
+            <div class="team-card"><div class="team-photo"><img src="..\..\assets\IMAGES\Carl.jpg" alt="Carl.jpg"></div><p>CRESPO, Carl</p></div>
             <div class="team-card"><div class="team-photo"><img src="..\..\assets\IMAGES\dan.png" alt="dan.png"></div><p>PAMINTUAN, Daniel</p></div>
             <div class="team-card"><div class="team-photo"><img src="..\..\assets\IMAGES\Marc.JPG" alt="Marc.JPG"></div><p>QUIZON, Marc</p></div>
             <div class="team-card"><div class="team-photo"><img src="..\..\assets\IMAGES\lebron.png" alt="LEBRON.png"></div><p>SACLOLO, Nathan</p></div>
