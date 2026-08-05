@@ -233,6 +233,66 @@ select.control-box {
 }
 
 
+/* Dark mode fix (Modals of Edit, Password, Cancel, and Add user */
+
+
+body.dark-mode .modal-box{
+    background: #ffffff;
+    color: #222;
+}
+
+.darkmode .modal-box h2,
+.darkmode .modal-box label,
+.darkmode .modal-box p{
+    color: #222;
+}
+
+.darkmode .modal-box input,
+.darkmode .modal-box select{
+    background: #fff;
+    color: #222;
+    border: 1px solid #ccc;
+}
+
+.darkmode .modal-box input::placeholder{
+    color: #666;
+}
+
+.modal-buttons button{
+    color: #222;
+    background: #f5f5f5;
+    border: 1px solid #999;
+}
+
+.modal-buttons button:hover{
+    background: #e5e5e5;
+}
+
+.darkmode .modal-box select option{
+    background: #ffffff;
+    color: #222 !important;
+}
+
+.darkmode #deleteMessage b{
+    color: #222 !important;
+}
+
+.darkmode .password-btn{
+    color: #000;
+}
+
+.darkmode #sortField option,
+.darkmode .filter-dropdown option,
+.darkmode #modalRole option{
+    background: #ffffff;
+    color: #222 !important;
+}
+
+.darkmode .dt-length select option{
+    background: #ffffff;
+    color: #222 !important;
+}
+
 /* ================= MOBILE MANAGE USERS ================= */
 
 @media (max-width: 768px){
@@ -285,5 +345,7 @@ select.control-box {
 }
 
 }
+
+
 
 
